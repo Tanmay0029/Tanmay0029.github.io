@@ -122,7 +122,7 @@ body {
 }
 
 /* ==========================================================================
-   Modern Hero Section (Midnight Cosmic & Electric Violet Theme)
+   Modern Hero Section & Multi-Theme System
    ========================================================================== */
 .hero-section-modern {
   position: relative;
@@ -131,18 +131,11 @@ body {
   align-items: center;
   padding: 130px 0 65px 0;
   overflow: hidden;
-  background-color: #06080e;
-  background-image: 
-    radial-gradient(circle at 18% 28%, rgba(0, 242, 254, 0.09) 0%, transparent 45%),
-    radial-gradient(circle at 82% 35%, rgba(139, 92, 246, 0.13) 0%, transparent 50%),
-    radial-gradient(circle at 50% 88%, rgba(14, 165, 233, 0.06) 0%, transparent 60%),
-    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+  transition: background 0.4s ease, background-color 0.4s ease;
 }
 
 .hero-glow-bg {
-  display: none !important; /* Eliminates muddy yellow/brown haze entirely */
+  display: none !important; /* Eliminates muddy blur completely */
 }
 
 .hero-content {
@@ -157,22 +150,17 @@ body {
   gap: 8px;
   padding: 7px 18px;
   border-radius: 30px;
-  background: rgba(0, 242, 254, 0.08);
-  border: 1px solid rgba(0, 242, 254, 0.3);
-  color: #38bdf8;
   font-size: 0.88rem;
   font-weight: 600;
   letter-spacing: 0.5px;
   margin-bottom: 1.25rem;
-  box-shadow: 0 0 18px rgba(0, 242, 254, 0.15);
+  transition: all 0.3s ease;
 }
 
 .status-dot {
   width: 9px;
   height: 9px;
-  background-color: #00f2fe;
   border-radius: 50%;
-  box-shadow: 0 0 10px #00f2fe;
   animation: pulseDot 2s infinite;
 }
 
@@ -204,9 +192,7 @@ body {
 }
 
 .hero-name span {
-  background: linear-gradient(135deg, #00f2fe 0%, #8b5cf6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease;
 }
 
 .hero-typewriter-container {
@@ -219,18 +205,284 @@ body {
 .hero-typewriter {
   font-size: 2.15rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  border-right: 3px solid #00f2fe;
   white-space: nowrap;
   animation: blinkCursor 0.75s step-end infinite;
   display: inline-block;
+  border-right: 3px solid;
+  transition: all 0.3s ease;
 }
 
 @keyframes blinkCursor {
   from, to { border-color: transparent }
-  50% { border-color: #00f2fe; }
+}
+
+/* --------------------------------------------------------------------------
+   Theme 1: Executive Onyx & Champagne Gold (Default)
+   -------------------------------------------------------------------------- */
+.hero-section-modern.theme-onyx-gold {
+  background-color: #0a0b0e;
+  background-image: 
+    radial-gradient(circle at 50% 30%, rgba(255, 189, 57, 0.08) 0%, transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 48px 48px, 48px 48px;
+}
+.hero-section-modern.theme-onyx-gold .status-pill {
+  background: rgba(255, 189, 57, 0.08);
+  border: 1px solid rgba(255, 189, 57, 0.35);
+  color: #fbbf24;
+  box-shadow: 0 0 16px rgba(255, 189, 57, 0.15);
+}
+.hero-section-modern.theme-onyx-gold .status-dot {
+  background-color: #ffbd39;
+  box-shadow: 0 0 10px #ffbd39;
+}
+.hero-section-modern.theme-onyx-gold .hero-name span {
+  background: linear-gradient(135deg, #ffffff 10%, #ffbd39 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-section-modern.theme-onyx-gold .hero-typewriter {
+  background: linear-gradient(135deg, #ffbd39 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-right-color: #ffbd39;
+}
+.hero-section-modern.theme-onyx-gold .btn-glow-primary {
+  background: linear-gradient(135deg, #ffbd39 0%, #f59e0b 100%) !important;
+  color: #0a0b0e !important;
+  box-shadow: 0 4px 20px rgba(255, 189, 57, 0.4) !important;
+}
+.hero-section-modern.theme-onyx-gold .btn-glow-primary:hover {
+  box-shadow: 0 8px 30px rgba(255, 189, 57, 0.6) !important;
+}
+.hero-section-modern.theme-onyx-gold .hero-portrait-card {
+  background: linear-gradient(145deg, rgba(255, 189, 57, 0.28), rgba(255, 255, 255, 0.08), rgba(15, 23, 42, 0.95));
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 189, 57, 0.15);
+  border-color: rgba(255, 189, 57, 0.25);
+}
+.hero-section-modern.theme-onyx-gold .hero-subcard {
+  border-color: rgba(255, 189, 57, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   Theme 2: Minimalist Monochromatic Titanium (Apple / Vercel Grade)
+   -------------------------------------------------------------------------- */
+.hero-section-modern.theme-minimal-titanium {
+  background-color: #070709;
+  background-image: 
+    radial-gradient(circle at 50% 25%, rgba(255, 255, 255, 0.05) 0%, transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+  background-size: 100% 100%, 48px 48px, 48px 48px;
+}
+.hero-section-modern.theme-minimal-titanium .status-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #f1f5f9;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.08);
+}
+.hero-section-modern.theme-minimal-titanium .status-dot {
+  background-color: #ffffff;
+  box-shadow: 0 0 10px #ffffff;
+}
+.hero-section-modern.theme-minimal-titanium .hero-name span {
+  background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-section-modern.theme-minimal-titanium .hero-typewriter {
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-right-color: #ffffff;
+}
+.hero-section-modern.theme-minimal-titanium .btn-glow-primary {
+  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%) !important;
+  color: #070709 !important;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3) !important;
+}
+.hero-section-modern.theme-minimal-titanium .btn-glow-primary:hover {
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.5) !important;
+}
+.hero-section-modern.theme-minimal-titanium .hero-portrait-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(148, 163, 184, 0.1), rgba(15, 23, 42, 0.95));
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 25px rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.hero-section-modern.theme-minimal-titanium .hero-subcard {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   Theme 3: Cyber Emerald & Mint (Quant & AI Data Science)
+   -------------------------------------------------------------------------- */
+.hero-section-modern.theme-emerald-matrix {
+  background-color: #040806;
+  background-image: 
+    radial-gradient(circle at 50% 30%, rgba(16, 185, 129, 0.09) 0%, transparent 60%),
+    linear-gradient(rgba(16, 185, 129, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 48px 48px, 48px 48px;
+}
+.hero-section-modern.theme-emerald-matrix .status-pill {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #34d399;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.15);
+}
+.hero-section-modern.theme-emerald-matrix .status-dot {
+  background-color: #10b981;
+  box-shadow: 0 0 10px #10b981;
+}
+.hero-section-modern.theme-emerald-matrix .hero-name span {
+  background: linear-gradient(135deg, #ffffff 20%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-section-modern.theme-emerald-matrix .hero-typewriter {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-right-color: #10b981;
+}
+.hero-section-modern.theme-emerald-matrix .btn-glow-primary {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #040806 !important;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4) !important;
+}
+.hero-section-modern.theme-emerald-matrix .btn-glow-primary:hover {
+  box-shadow: 0 8px 30px rgba(16, 185, 129, 0.6) !important;
+}
+.hero-section-modern.theme-emerald-matrix .hero-portrait-card {
+  background: linear-gradient(145deg, rgba(16, 185, 129, 0.28), rgba(52, 211, 153, 0.1), rgba(15, 23, 42, 0.95));
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+.hero-section-modern.theme-emerald-matrix .hero-subcard {
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   Theme 4: Gotham Stealth & Crimson Web (Batman / Spider-Man Tribute)
+   -------------------------------------------------------------------------- */
+.hero-section-modern.theme-gotham-crimson {
+  background-color: #050608;
+  background-image: 
+    radial-gradient(circle at 50% 30%, rgba(244, 63, 94, 0.08) 0%, transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 48px 48px, 48px 48px;
+}
+.hero-section-modern.theme-gotham-crimson .status-pill {
+  background: rgba(244, 63, 94, 0.08);
+  border: 1px solid rgba(244, 63, 94, 0.35);
+  color: #fb7185;
+  box-shadow: 0 0 16px rgba(244, 63, 94, 0.15);
+}
+.hero-section-modern.theme-gotham-crimson .status-dot {
+  background-color: #f43f5e;
+  box-shadow: 0 0 10px #f43f5e;
+}
+.hero-section-modern.theme-gotham-crimson .hero-name span {
+  background: linear-gradient(135deg, #ffffff 20%, #f43f5e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-section-modern.theme-gotham-crimson .hero-typewriter {
+  background: linear-gradient(135deg, #fb7185 0%, #e11d48 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-right-color: #f43f5e;
+}
+.hero-section-modern.theme-gotham-crimson .btn-glow-primary {
+  background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(244, 63, 94, 0.4) !important;
+}
+.hero-section-modern.theme-gotham-crimson .btn-glow-primary:hover {
+  box-shadow: 0 8px 30px rgba(244, 63, 94, 0.6) !important;
+}
+.hero-section-modern.theme-gotham-crimson .hero-portrait-card {
+  background: linear-gradient(145deg, rgba(244, 63, 94, 0.28), rgba(255, 255, 255, 0.08), rgba(15, 23, 42, 0.95));
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(244, 63, 94, 0.15);
+  border-color: rgba(244, 63, 94, 0.25);
+}
+.hero-section-modern.theme-gotham-crimson .hero-subcard {
+  border-color: rgba(244, 63, 94, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   Hero Theme Switcher Control Bar
+   -------------------------------------------------------------------------- */
+.hero-theme-switcher-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1.8rem;
+  padding: 8px 18px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  z-index: 5;
+  position: relative;
+}
+
+.switcher-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-right: 4px;
+}
+
+.theme-switcher-pills {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.theme-pill-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  outline: none !important;
+}
+
+.theme-pill-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.theme-pill-btn.active {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
 }
 
 .hero-desc {

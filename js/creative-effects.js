@@ -1,6 +1,6 @@
 /**
  * Creative & Interactive Effects - Tanmay Agrawal Portfolio
- * 1. Fluid Data Waves / Stream Flow (Hero)
+ * 1. Multi-Theme Hero Animation & Live Switcher
  * 2. 3D Card Tilt Effects
  * 3. Command Palette (Ctrl + K)
  * 4. Interactive In-Browser SQL Console
@@ -11,16 +11,18 @@
   "use strict";
 
   // =========================================================================
-  // 1. Fluid Data Waves / Stream Flow (Hero Background)
+  // 1. Multi-Theme Hero Animation Engine & Live Switcher
   // =========================================================================
-  function initFluidDataWaves() {
+  let currentHeroTheme = "onyx-gold"; // Default: onyx-gold, minimal-titanium, emerald-matrix, gotham-crimson
+
+  function initHeroAnimation() {
     const canvas = document.getElementById("data-network-canvas");
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     let width = 0, height = 0;
-    let animationFrameId;
+    let animId;
 
-    let mouse = { x: -1000, y: -1000, targetX: -1000, targetY: -1000, radius: 240, force: 48 };
+    let mouse = { x: -1000, y: -1000, targetX: -1000, targetY: -1000 };
 
     function resize() {
       const parent = canvas.parentElement;
@@ -30,10 +32,9 @@
     resize();
     window.addEventListener("resize", resize);
 
-    // Track mouse over hero section or viewport
     window.addEventListener("mousemove", function(e) {
       const rect = canvas.getBoundingClientRect();
-      if (e.clientY <= rect.bottom + 80 && e.clientY >= rect.top - 80) {
+      if (e.clientY <= rect.bottom + 100 && e.clientY >= rect.top - 100) {
         mouse.targetX = e.clientX - rect.left;
         mouse.targetY = e.clientY - rect.top;
       } else {
@@ -47,193 +48,381 @@
       mouse.targetY = -1000;
     });
 
-    // Waves definition: Layered multi-frequency curves inspired by time-series analytical distributions
-    const waves = [
-      {
-        yRatio: 0.60,
-        amplitude: 44,
-        wavelength: 0.0032,
-        speed: 0.012,
-        phase: 0,
-        colorStart: "rgba(0, 242, 254, 0.75)",
-        colorEnd: "rgba(139, 92, 246, 0.85)",
-        fillGradient: true,
-        fillColorStart: "rgba(0, 242, 254, 0.07)",
-        fillColorEnd: "rgba(139, 92, 246, 0.01)",
-        lineWidth: 2.4,
-        samplePoints: true
-      },
-      {
-        yRatio: 0.67,
-        amplitude: 54,
-        wavelength: 0.0025,
-        speed: -0.009,
-        phase: 1.8,
-        colorStart: "rgba(139, 92, 246, 0.7)",
-        colorEnd: "rgba(56, 189, 248, 0.7)",
-        fillGradient: true,
-        fillColorStart: "rgba(139, 92, 246, 0.06)",
-        fillColorEnd: "rgba(6, 8, 14, 0.0)",
-        lineWidth: 1.9,
-        samplePoints: false
-      },
-      {
-        yRatio: 0.52,
-        amplitude: 28,
-        wavelength: 0.0052,
-        speed: 0.015,
-        phase: 3.5,
-        colorStart: "rgba(168, 85, 247, 0.55)",
-        colorEnd: "rgba(0, 242, 254, 0.55)",
-        fillGradient: false,
-        lineWidth: 1.5,
-        samplePoints: true
-      },
-      {
-        yRatio: 0.75,
-        amplitude: 62,
-        wavelength: 0.0019,
-        speed: 0.007,
-        phase: 0.8,
-        colorStart: "rgba(59, 130, 246, 0.4)",
-        colorEnd: "rgba(147, 51, 234, 0.3)",
-        fillGradient: true,
-        fillColorStart: "rgba(59, 130, 246, 0.04)",
-        fillColorEnd: "rgba(6, 8, 14, 0.0)",
-        lineWidth: 1.3,
-        samplePoints: false
-      }
-    ];
-
-    // Floating ambient data particles drifting along stream current
-    const particles = [];
-    const particleCount = 28;
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        x: Math.random() * (width || 1200),
-        y: Math.random() * (height || 800),
+    // -----------------------------------------------------------------------
+    // State 1: Onyx Gold Horizon Grid
+    // -----------------------------------------------------------------------
+    let gridOffset = 0;
+    const goldBeacons = [];
+    for (let i = 0; i < 18; i++) {
+      goldBeacons.push({
+        x: Math.random(),
+        yRatio: Math.random() * 0.45 + 0.55,
         size: Math.random() * 2 + 1,
-        vx: Math.random() * 0.45 + 0.2,
-        vy: (Math.random() - 0.5) * 0.22,
-        alpha: Math.random() * 0.5 + 0.25,
-        color: Math.random() > 0.5 ? "0, 242, 254" : "139, 92, 246"
+        speed: (Math.random() - 0.5) * 0.0008,
+        pulse: Math.random() * Math.PI * 2
       });
     }
 
-    function render() {
-      // Smooth mouse spring interpolation
+    function renderOnyxGold(time) {
+      gridOffset = (gridOffset + 0.002) % 0.1;
+      const horizonY = height * 0.56;
+      const mouseFactorX = mouse.x > -500 ? (mouse.x - width * 0.5) * 0.15 : 0;
+      const mouseFactorY = mouse.y > -500 ? (mouse.y - height * 0.5) * 0.1 : 0;
+      const vanishX = width * 0.5 + mouseFactorX;
+      const vanishY = height * 0.46 + mouseFactorY;
+
+      // Ambient horizon glow
+      const glowGrad = ctx.createRadialGradient(vanishX, vanishY, 10, vanishX, vanishY, Math.max(width, height) * 0.5);
+      glowGrad.addColorStop(0, "rgba(255, 189, 57, 0.13)");
+      glowGrad.addColorStop(0.5, "rgba(255, 189, 57, 0.03)");
+      glowGrad.addColorStop(1, "rgba(10, 11, 14, 0)");
+      ctx.fillStyle = glowGrad;
+      ctx.fillRect(0, 0, width, height);
+
+      // Perspective grid lines radiating downwards
+      const lineCount = 18;
+      ctx.strokeStyle = "rgba(255, 189, 57, 0.18)";
+      ctx.lineWidth = 1;
+
+      for (let i = -lineCount / 2; i <= lineCount / 2; i++) {
+        const bottomX = width * 0.5 + i * (width / (lineCount * 0.65)) + mouseFactorX * 1.5;
+        ctx.beginPath();
+        ctx.moveTo(vanishX, vanishY);
+        ctx.lineTo(bottomX, height);
+        ctx.stroke();
+      }
+
+      // Horizontal perspective grid steps
+      const hSteps = 9;
+      for (let j = 0; j < hSteps; j++) {
+        const ratio = ((j / hSteps) + gridOffset) % 1.0;
+        const y = horizonY + (height - horizonY) * Math.pow(ratio, 2.2);
+        const alpha = Math.pow(ratio, 1.4) * 0.35;
+        ctx.strokeStyle = `rgba(255, 189, 57, ${alpha})`;
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      // Horizon separator beam
+      ctx.strokeStyle = "rgba(255, 189, 57, 0.4)";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(0, horizonY);
+      ctx.lineTo(width, horizonY);
+      ctx.stroke();
+
+      // Floating gold telemetry beacons
+      for (let b of goldBeacons) {
+        b.x = (b.x + b.speed + 1) % 1;
+        b.pulse += 0.03;
+        const bx = b.x * width;
+        const by = height * b.yRatio;
+        const bAlpha = 0.4 + Math.sin(b.pulse) * 0.35;
+
+        ctx.beginPath();
+        ctx.arc(bx, by, b.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 189, 57, ${bAlpha})`;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = "rgba(255, 189, 57, 0.8)";
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
+
+    // -----------------------------------------------------------------------
+    // State 2: Minimalist Monochromatic Titanium (Spotlight & Topography)
+    // -----------------------------------------------------------------------
+    let topoPhase = 0;
+    function renderMinimalTitanium(time) {
+      topoPhase += 0.004;
+
+      // Soft cursor spotlight
+      if (mouse.x > -500) {
+        const spot = ctx.createRadialGradient(mouse.x, mouse.y, 10, mouse.x, mouse.y, 340);
+        spot.addColorStop(0, "rgba(255, 255, 255, 0.07)");
+        spot.addColorStop(0.5, "rgba(255, 255, 255, 0.02)");
+        spot.addColorStop(1, "rgba(0, 0, 0, 0)");
+        ctx.fillStyle = spot;
+        ctx.fillRect(0, 0, width, height);
+      }
+
+      // Elegant topographic isolines
+      const curves = 6;
+      for (let c = 0; c < curves; c++) {
+        const baseY = height * (0.35 + (c / curves) * 0.55);
+        ctx.beginPath();
+        ctx.moveTo(0, baseY);
+
+        for (let x = 0; x <= width; x += 15) {
+          const wave = Math.sin(x * 0.0025 + topoPhase + c * 0.8) * 35 +
+                       Math.cos(x * 0.0045 - topoPhase * 0.7) * 18;
+          const py = baseY + wave;
+
+          // Proximity highlight to cursor
+          let alpha = 0.07;
+          if (mouse.x > -500) {
+            const dx = x - mouse.x;
+            const dy = py - mouse.y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            if (d < 220) {
+              alpha += (1 - d / 220) * 0.28;
+            }
+          }
+
+          ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+          ctx.lineWidth = 1;
+          ctx.lineTo(x, py);
+        }
+        ctx.stroke();
+      }
+    }
+
+    // -----------------------------------------------------------------------
+    // State 3: Cyber Emerald & Mint (Neural AI Graph & Moving Packets)
+    // -----------------------------------------------------------------------
+    const emeraldNodes = [];
+    const nodeCount = 38;
+    for (let i = 0; i < nodeCount; i++) {
+      emeraldNodes.push({
+        x: Math.random() * (width || 1200),
+        y: Math.random() * (height || 800),
+        vx: (Math.random() - 0.5) * 0.65,
+        vy: (Math.random() - 0.5) * 0.65,
+        radius: Math.random() * 2 + 1.5,
+        color: Math.random() > 0.4 ? "16, 185, 129" : "52, 211, 153"
+      });
+    }
+
+    // Data packets travelling between nodes
+    const packets = [
+      { from: 0, to: 1, progress: 0, speed: 0.015 },
+      { from: 4, to: 7, progress: 0.3, speed: 0.02 },
+      { from: 10, to: 12, progress: 0.6, speed: 0.018 },
+      { from: 15, to: 18, progress: 0.1, speed: 0.012 },
+      { from: 22, to: 25, progress: 0.8, speed: 0.022 }
+    ];
+
+    function renderEmeraldNetwork(time) {
+      // Update nodes
+      for (let n of emeraldNodes) {
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0 || n.x > width) n.vx *= -1;
+        if (n.y < 0 || n.y > height) n.vy *= -1;
+
+        // Mouse attraction
+        if (mouse.x > -500) {
+          const dx = mouse.x - n.x;
+          const dy = mouse.y - n.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 170) {
+            const f = (170 - dist) / 170;
+            n.x += (dx / dist) * f * 1.5;
+            n.y += (dy / dist) * f * 1.5;
+          }
+        }
+
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${n.color}, 0.8)`;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = `rgba(${n.color}, 0.7)`;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+
+      // Connect nodes
+      const maxD = 135;
+      for (let i = 0; i < emeraldNodes.length; i++) {
+        for (let j = i + 1; j < emeraldNodes.length; j++) {
+          const dx = emeraldNodes[i].x - emeraldNodes[j].x;
+          const dy = emeraldNodes[i].y - emeraldNodes[j].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < maxD) {
+            const alpha = (1 - d / maxD) * 0.28;
+            ctx.beginPath();
+            ctx.moveTo(emeraldNodes[i].x, emeraldNodes[i].y);
+            ctx.lineTo(emeraldNodes[j].x, emeraldNodes[j].y);
+            ctx.strokeStyle = `rgba(16, 185, 129, ${alpha})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Render traveling packets
+      for (let p of packets) {
+        p.progress += p.speed;
+        if (p.progress >= 1) {
+          p.progress = 0;
+          p.from = Math.floor(Math.random() * emeraldNodes.length);
+          p.to = (p.from + Math.floor(Math.random() * 5) + 1) % emeraldNodes.length;
+        }
+
+        const n1 = emeraldNodes[p.from];
+        const n2 = emeraldNodes[p.to];
+        if (n1 && n2) {
+          const px = n1.x + (n2.x - n1.x) * p.progress;
+          const py = n1.y + (n2.y - n1.y) * p.progress;
+
+          ctx.beginPath();
+          ctx.arc(px, py, 3.2, 0, Math.PI * 2);
+          ctx.fillStyle = "#ffffff";
+          ctx.shadowBlur = 12;
+          ctx.shadowColor = "#34d399";
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+      }
+    }
+
+    // -----------------------------------------------------------------------
+    // State 4: Gotham Stealth & Crimson Web (Batman / Spider-Man Tribute)
+    // -----------------------------------------------------------------------
+    let webRotation = 0;
+    const webRings = 7;
+    const webSpokes = 12;
+
+    function renderGothamCrimson(time) {
+      webRotation += 0.0012;
+      const originX = mouse.x > -500 ? width * 0.5 + (mouse.x - width * 0.5) * 0.25 : width * 0.5;
+      const originY = mouse.y > -500 ? height * 0.5 + (mouse.y - height * 0.5) * 0.25 : height * 0.5;
+      const maxR = Math.max(width, height) * 0.65;
+
+      // Subtle ambient radar pulse
+      const radar = ctx.createRadialGradient(originX, originY, 10, originX, originY, maxR * 0.8);
+      radar.addColorStop(0, "rgba(244, 63, 94, 0.07)");
+      radar.addColorStop(0.5, "rgba(244, 63, 94, 0.02)");
+      radar.addColorStop(1, "rgba(5, 6, 8, 0)");
+      ctx.fillStyle = radar;
+      ctx.fillRect(0, 0, width, height);
+
+      // Radial web struts
+      ctx.strokeStyle = "rgba(148, 163, 184, 0.12)";
+      ctx.lineWidth = 1;
+
+      for (let s = 0; s < webSpokes; s++) {
+        const angle = (s / webSpokes) * Math.PI * 2 + webRotation;
+        const ex = originX + Math.cos(angle) * maxR;
+        const ey = originY + Math.sin(angle) * maxR;
+        ctx.beginPath();
+        ctx.moveTo(originX, originY);
+        ctx.lineTo(ex, ey);
+        ctx.stroke();
+      }
+
+      // Concentric web rings
+      for (let r = 1; r <= webRings; r++) {
+        const ringRadius = (r / webRings) * maxR;
+        ctx.beginPath();
+
+        for (let s = 0; s <= webSpokes; s++) {
+          const angle = (s / webSpokes) * Math.PI * 2 + webRotation;
+          const px = originX + Math.cos(angle) * ringRadius;
+          const py = originY + Math.sin(angle) * ringRadius;
+
+          if (s === 0) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+
+          // Glowing crimson node at intersection
+          if (r % 2 === 0 && s < webSpokes) {
+            let nSize = 2.5;
+            let nAlpha = 0.5;
+
+            // Vibrate if mouse close
+            if (mouse.x > -500) {
+              const d = Math.hypot(px - mouse.x, py - mouse.y);
+              if (d < 140) {
+                nSize = 4.2;
+                nAlpha = 0.95;
+              }
+            }
+
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(px, py, nSize, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(244, 63, 94, ${nAlpha})`;
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = "#f43f5e";
+            ctx.fill();
+            ctx.restore();
+          }
+        }
+        ctx.strokeStyle = `rgba(244, 63, 94, ${0.08 + (r / webRings) * 0.08})`;
+        ctx.stroke();
+      }
+    }
+
+    // -----------------------------------------------------------------------
+    // Main Animation Loop
+    // -----------------------------------------------------------------------
+    function render(time) {
+      // Smooth mouse spring
       mouse.x += (mouse.targetX - mouse.x) * 0.08;
       mouse.y += (mouse.targetY - mouse.y) * 0.08;
 
       ctx.clearRect(0, 0, width, height);
 
-      // 1. Draw floating ambient data nodes drifting horizontally
-      for (let p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x > width + 20) p.x = -20;
-        if (p.y < 0) p.y = height;
-        if (p.y > height) p.y = 0;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${p.color}, ${p.alpha})`;
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = `rgba(${p.color}, 0.8)`;
-        ctx.fill();
-        ctx.shadowBlur = 0;
+      if (currentHeroTheme === "onyx-gold") {
+        renderOnyxGold(time);
+      } else if (currentHeroTheme === "minimal-titanium") {
+        renderMinimalTitanium(time);
+      } else if (currentHeroTheme === "emerald-matrix") {
+        renderEmeraldNetwork(time);
+      } else if (currentHeroTheme === "gotham-crimson") {
+        renderGothamCrimson(time);
+      } else {
+        renderOnyxGold(time);
       }
 
-      // 2. Render each wave
-      for (let w of waves) {
-        w.phase += w.speed;
-        const baseY = height * w.yRatio;
-
-        // Create linear gradient across width
-        const grad = ctx.createLinearGradient(0, 0, width, 0);
-        grad.addColorStop(0, w.colorStart);
-        grad.addColorStop(0.5, w.colorEnd);
-        grad.addColorStop(1, w.colorStart);
-
-        ctx.beginPath();
-        ctx.moveTo(0, baseY);
-
-        const pointInterval = 6;
-        const wavePoints = [];
-
-        for (let x = 0; x <= width + pointInterval; x += pointInterval) {
-          // Compound harmonics
-          let waveOffset = Math.sin(x * w.wavelength + w.phase) * w.amplitude;
-          waveOffset += Math.cos(x * w.wavelength * 0.55 + w.phase * 0.75) * (w.amplitude * 0.32);
-
-          // Mouse fluid wave reaction
-          if (mouse.x > -500) {
-            const dx = x - mouse.x;
-            const dy = (baseY + waveOffset) - mouse.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < mouse.radius) {
-              const ripple = Math.cos((dist / mouse.radius) * (Math.PI / 2));
-              waveOffset += ripple * mouse.force * (dy > 0 ? 1 : -0.7);
-            }
-          }
-
-          const currentY = baseY + waveOffset;
-          wavePoints.push({ x, y: currentY });
-
-          if (x === 0) {
-            ctx.moveTo(x, currentY);
-          } else {
-            ctx.lineTo(x, currentY);
-          }
-        }
-
-        // Stroke line
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = w.lineWidth;
-        ctx.stroke();
-
-        // Optional fill gradient to bottom
-        if (w.fillGradient) {
-          ctx.lineTo(width, height);
-          ctx.lineTo(0, height);
-          ctx.closePath();
-          const fillGrad = ctx.createLinearGradient(0, baseY - w.amplitude, 0, height);
-          fillGrad.addColorStop(0, w.fillColorStart);
-          fillGrad.addColorStop(1, w.fillColorEnd);
-          ctx.fillStyle = fillGrad;
-          ctx.fill();
-        }
-
-        // Discrete sample points along wave crest (analytical time-series indicators)
-        if (w.samplePoints) {
-          const sampleStep = 80;
-          for (let pt of wavePoints) {
-            if (Math.round(pt.x) % sampleStep < pointInterval) {
-              // Glowing data node
-              ctx.beginPath();
-              ctx.arc(pt.x, pt.y, 3, 0, Math.PI * 2);
-              ctx.fillStyle = "#ffffff";
-              ctx.shadowBlur = 10;
-              ctx.shadowColor = w.colorStart;
-              ctx.fill();
-              ctx.shadowBlur = 0;
-
-              // Subtle coordinate stem dropped down 14px
-              ctx.beginPath();
-              ctx.moveTo(pt.x, pt.y);
-              ctx.lineTo(pt.x, pt.y + 14);
-              ctx.strokeStyle = "rgba(255, 255, 255, 0.18)";
-              ctx.lineWidth = 1;
-              ctx.stroke();
-            }
-          }
-        }
-      }
-
-      animationFrameId = requestAnimationFrame(render);
+      animId = requestAnimationFrame(render);
     }
 
-    render();
+    animId = requestAnimationFrame(render);
+  }
+
+  // =========================================================================
+  // Theme Switcher Controller
+  // =========================================================================
+  function initHeroThemeSwitcher() {
+    const heroSection = document.getElementById("home-section");
+    const pillBtns = document.querySelectorAll(".theme-pill-btn");
+    if (!heroSection) return;
+
+    const savedTheme = localStorage.getItem("tanmay_hero_theme") || "onyx-gold";
+    setTheme(savedTheme, false);
+
+    pillBtns.forEach(btn => {
+      btn.addEventListener("click", function() {
+        const theme = this.getAttribute("data-theme");
+        setTheme(theme, true);
+      });
+    });
+
+    function setTheme(themeName, save) {
+      currentHeroTheme = themeName;
+      if (save) {
+        localStorage.setItem("tanmay_hero_theme", themeName);
+      }
+
+      // Update button active state
+      pillBtns.forEach(btn => {
+        if (btn.getAttribute("data-theme") === themeName) {
+          btn.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+        }
+      });
+
+      // Update CSS class on heroSection
+      heroSection.classList.remove("theme-onyx-gold", "theme-minimal-titanium", "theme-emerald-matrix", "theme-gotham-crimson");
+      heroSection.classList.add(`theme-${themeName}`);
+    }
+
+    // Expose for Command Palette or console
+    window.switchHeroTheme = setTheme;
   }
 
   // =========================================================================
@@ -502,6 +691,10 @@
       { title: "View Work Experience", desc: "Zenoti & Aligned Automation roles", icon: "icon-briefcase", action: () => scrollToSection("#experience-section") },
       { title: "Download Resume PDF", desc: "Open latest Data Analyst resume", icon: "icon-file-pdf-o", action: () => openUrl("resume.pdf") },
       { title: "Copy Email Address", desc: "tanmayagrawal2907@gmail.com", icon: "icon-copy", action: () => copyEmail() },
+      { title: "Switch Theme: Executive Onyx Gold", desc: "Champagne gold & 3D horizon grid", icon: "icon-sliders", action: () => window.switchHeroTheme("onyx-gold", true) },
+      { title: "Switch Theme: Minimalist Titanium", desc: "Pure dark & ambient spotlight (Apple/Vercel look)", icon: "icon-sliders", action: () => window.switchHeroTheme("minimal-titanium", true) },
+      { title: "Switch Theme: Cyber Emerald AI", desc: "Emerald green & pulsing neural network", icon: "icon-sliders", action: () => window.switchHeroTheme("emerald-matrix", true) },
+      { title: "Switch Theme: Gotham Crimson", desc: "Carbon black & interactive web lattice", icon: "icon-sliders", action: () => window.switchHeroTheme("gotham-crimson", true) },
       { title: "Connect on LinkedIn", desc: "Open LinkedIn profile", icon: "icon-linkedin", action: () => openUrl("https://www.linkedin.com/in/tanmay-agrawal-b4319624a/") },
       { title: "View GitHub Profile", desc: "github.com/Tanmay0029", icon: "icon-github", action: () => openUrl("https://github.com/Tanmay0029") }
     ];
@@ -624,7 +817,8 @@
   // Initialize Everything on DOM Load
   // =========================================================================
   document.addEventListener("DOMContentLoaded", function() {
-    initFluidDataWaves();
+    initHeroAnimation();
+    initHeroThemeSwitcher();
     initCardTilt();
     initSqlConsole();
     initMedallionExplorer();
