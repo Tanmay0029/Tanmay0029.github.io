@@ -172,6 +172,11 @@
       { metric: "Industry Internships", value: "2", scope: "Zenoti & Aligned Automation" },
       { metric: "Strategic SQL Queries", value: "15+", scope: "Window Functions (LAG, RANK, NTILE)" },
       { metric: "LLM Inference Acceleration", value: "90%", scope: "DirectML GPU Optimization" }
+    ],
+    heroes: [
+      { hero: "The Dark Knight", alias: "Bruce Wayne", protocol: "Wayne Enterprises Analytics", favorite_query: "SELECT justice FROM gotham WHERE corruption = 0;" },
+      { hero: "Spider-Man", alias: "Peter Parker", protocol: "Web Data Crawling & Lineage", favorite_query: "WITH GreatPower AS (SELECT responsibility FROM moral_duty) SELECT * FROM GreatPower;" },
+      { hero: "Tanmay Agrawal", alias: "Data & Analytics Engineer", protocol: "Medallion Star Schema & High-Impact Insights", favorite_query: "SELECT revenue, retention FROM trusted_gold_marts WHERE data_integrity = 1;" }
     ]
   };
 
@@ -204,6 +209,9 @@
       } else if (lower.includes("from career_metrics") || lower.includes("from metrics")) {
         tableName = "metrics";
         results = careerDB.metrics;
+      } else if (lower.includes("batman") || lower.includes("spiderman") || lower.includes("hero") || lower.includes("wayne")) {
+        tableName = "heroes";
+        results = careerDB.heroes;
       } else {
         tableName = "projects";
         results = careerDB.projects;
@@ -382,7 +390,9 @@
       { title: "Download Resume PDF", desc: "Open latest Data Analyst resume", icon: "icon-file-pdf-o", action: () => openUrl("resume.pdf") },
       { title: "Copy Email Address", desc: "tanmayagrawal2907@gmail.com", icon: "icon-copy", action: () => copyEmail() },
       { title: "Connect on LinkedIn", desc: "Open LinkedIn profile", icon: "icon-linkedin", action: () => openUrl("https://www.linkedin.com/in/tanmay-agrawal-b4319624a/") },
-      { title: "View GitHub Profile", desc: "github.com/Tanmay0029", icon: "icon-github", action: () => openUrl("https://github.com/Tanmay0029") }
+      { title: "View GitHub Profile", desc: "github.com/Tanmay0029", icon: "icon-github", action: () => openUrl("https://github.com/Tanmay0029") },
+      { title: "🦇 Wayne Enterprises Protocol (Easter Egg)", desc: "It's not who I am underneath, but what I query that defines me.", icon: "icon-shield", action: () => showToast("🦇 'It's not who I am underneath, but what I query that defines me.' — Dark Knight Protocol") },
+      { title: "🕷️ Spider-Verse Lineage (Easter Egg)", desc: "With great data comes great responsibility.", icon: "icon-globe", action: () => showToast("🕷️ 'With great data comes great responsibility.' — Peter Parker") }
     ];
 
     function showModal() {
