@@ -13,7 +13,7 @@
   // =========================================================================
   // 1. Multi-Theme Hero Animation Engine & Live Switcher
   // =========================================================================
-  let currentHeroTheme = "onyx-gold"; // Default: onyx-gold, minimal-titanium, emerald-matrix, gotham-crimson
+  let currentHeroTheme = "minimal-titanium"; // Default: onyx-gold, minimal-titanium, emerald-matrix, gotham-crimson
 
   function initHeroAnimation() {
     const canvas = document.getElementById("data-network-canvas");
@@ -391,7 +391,7 @@
     const pillBtns = document.querySelectorAll(".theme-pill-btn");
     if (!heroSection) return;
 
-    const savedTheme = localStorage.getItem("tanmay_hero_theme") || "onyx-gold";
+    const savedTheme = localStorage.getItem("tanmay_hero_theme") || "minimal-titanium";
     setTheme(savedTheme, false);
 
     pillBtns.forEach(btn => {
@@ -416,8 +416,12 @@
         }
       });
 
-      // Update CSS class on heroSection
-      heroSection.classList.remove("theme-onyx-gold", "theme-minimal-titanium", "theme-emerald-matrix", "theme-gotham-crimson");
+      // Update CSS class on both heroSection and document.body for global button/accent adaptation
+      const themeClasses = ["theme-onyx-gold", "theme-minimal-titanium", "theme-emerald-matrix", "theme-gotham-crimson"];
+      document.body.classList.remove(...themeClasses);
+      document.body.classList.add(`theme-${themeName}`);
+
+      heroSection.classList.remove(...themeClasses);
       heroSection.classList.add(`theme-${themeName}`);
     }
 

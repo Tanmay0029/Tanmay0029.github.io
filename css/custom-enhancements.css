@@ -582,13 +582,13 @@ body {
 }
 
 .btn-glow-primary {
-  background: linear-gradient(135deg, #00f2fe 0%, #8b5cf6 100%) !important;
-  color: #06080e !important;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%) !important;
+  color: #070709 !important;
   font-weight: 700 !important;
   border: none !important;
   border-radius: 10px !important;
   padding: 12px 24px !important;
-  box-shadow: 0 4px 20px rgba(0, 242, 254, 0.35) !important;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.35) !important;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   display: inline-flex;
   align-items: center;
@@ -597,8 +597,8 @@ body {
 
 .btn-glow-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.55) !important;
-  color: #ffffff !important;
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.6) !important;
+  color: #000000 !important;
 }
 
 .btn-glow-outline {
@@ -607,7 +607,7 @@ body {
   font-weight: 600 !important;
   border-radius: 10px !important;
   padding: 12px 22px !important;
-  border: 1px solid rgba(139, 92, 246, 0.35) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
   backdrop-filter: blur(8px);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
   display: inline-flex;
@@ -616,29 +616,110 @@ body {
 }
 
 .btn-glow-outline:hover {
-  background: rgba(0, 242, 254, 0.1) !important;
-  border-color: #00f2fe !important;
-  color: #00f2fe !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
   transform: translateY(-3px);
-  box-shadow: 0 4px 20px rgba(0, 242, 254, 0.25) !important;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.25) !important;
 }
 
-/* Hero Portrait Styling (Stealth Cosmic Violet Frame) */
+/* ==========================================================================
+   Global Dynamic Theme Adapters for All CTAs, Badges & Buttons
+   (Connect on LinkedIn, Get In Touch, Download PDF, View Projects, etc.)
+   ========================================================================== */
+/* Minimal Titanium Theme Adapters */
+body.theme-minimal-titanium .btn-glow-primary,
+.theme-minimal-titanium .btn-glow-primary {
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%) !important;
+  color: #070709 !important;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.35) !important;
+}
+body.theme-minimal-titanium .btn-glow-primary:hover,
+.theme-minimal-titanium .btn-glow-primary:hover {
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.6) !important;
+  color: #000000 !important;
+}
+body.theme-minimal-titanium .btn-glow-outline:hover,
+.theme-minimal-titanium .btn-glow-outline:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Onyx Gold Theme Adapters */
+body.theme-onyx-gold .btn-glow-primary,
+.theme-onyx-gold .btn-glow-primary {
+  background: linear-gradient(135deg, #ffbd39 0%, #f59e0b 100%) !important;
+  color: #0a0b0e !important;
+  box-shadow: 0 4px 20px rgba(255, 189, 57, 0.4) !important;
+}
+body.theme-onyx-gold .btn-glow-primary:hover,
+.theme-onyx-gold .btn-glow-primary:hover {
+  box-shadow: 0 8px 30px rgba(255, 189, 57, 0.65) !important;
+  color: #0a0b0e !important;
+}
+body.theme-onyx-gold .btn-glow-outline:hover,
+.theme-onyx-gold .btn-glow-outline:hover {
+  background: rgba(255, 189, 57, 0.1) !important;
+  border-color: #ffbd39 !important;
+  color: #ffbd39 !important;
+  box-shadow: 0 4px 20px rgba(255, 189, 57, 0.25) !important;
+}
+
+/* Emerald AI Theme Adapters */
+body.theme-emerald-matrix .btn-glow-primary,
+.theme-emerald-matrix .btn-glow-primary {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #040806 !important;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4) !important;
+}
+body.theme-emerald-matrix .btn-glow-primary:hover,
+.theme-emerald-matrix .btn-glow-primary:hover {
+  box-shadow: 0 8px 30px rgba(16, 185, 129, 0.65) !important;
+  color: #ffffff !important;
+}
+body.theme-emerald-matrix .btn-glow-outline:hover,
+.theme-emerald-matrix .btn-glow-outline:hover {
+  background: rgba(16, 185, 129, 0.12) !important;
+  border-color: #10b981 !important;
+  color: #34d399 !important;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.25) !important;
+}
+
+/* Gotham Crimson Theme Adapters */
+body.theme-gotham-crimson .btn-glow-primary,
+.theme-gotham-crimson .btn-glow-primary {
+  background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(244, 63, 94, 0.4) !important;
+}
+body.theme-gotham-crimson .btn-glow-primary:hover,
+.theme-gotham-crimson .btn-glow-primary:hover {
+  box-shadow: 0 8px 30px rgba(244, 63, 94, 0.65) !important;
+  color: #ffffff !important;
+}
+body.theme-gotham-crimson .btn-glow-outline:hover,
+.theme-gotham-crimson .btn-glow-outline:hover {
+  background: rgba(244, 63, 94, 0.12) !important;
+  border-color: #f43f5e !important;
+  color: #fb7185 !important;
+  box-shadow: 0 4px 20px rgba(244, 63, 94, 0.25) !important;
+}
+
+
 .hero-portrait-card {
   position: relative;
   max-width: 440px;
   margin: 0 auto;
   border-radius: 22px;
   padding: 6px;
-  background: linear-gradient(145deg, rgba(0, 242, 254, 0.3), rgba(139, 92, 246, 0.22), rgba(15, 23, 42, 0.95));
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(0, 242, 254, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .hero-portrait-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 30px 75px rgba(0, 0, 0, 1), 0 0 45px rgba(139, 92, 246, 0.35);
 }
 
 .hero-portrait-img {
@@ -651,23 +732,17 @@ body {
   display: block;
 }
 
-/* Professional Caption Strip OUTSIDE the image */
 .hero-subcard {
   max-width: 440px;
   margin: 1rem auto 0 auto;
   background: rgba(13, 17, 28, 0.88);
-  border: 1px solid rgba(139, 92, 246, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 14px;
   padding: 12px 20px;
   text-align: center;
   backdrop-filter: blur(12px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
-}
-
-.hero-subcard:hover {
-  border-color: rgba(0, 242, 254, 0.45);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 242, 254, 0.15);
 }
 
 /* ==========================================================================
