@@ -36,13 +36,19 @@
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav nav ml-auto">
+	        <ul class="navbar-nav nav ml-auto align-items-center">
 	          <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
 	          <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
 	          <li class="nav-item"><a href="#experience-section" class="nav-link"><span>Experience</span></a></li>
 	          <li class="nav-item"><a href="#project-section" class="nav-link"><span>Projects</span></a></li>
+	          <li class="nav-item"><a href="#sql-terminal-section" class="nav-link"><span>SQL Terminal</span></a></li>
 	          <li class="nav-item"><a href="#skills-section" class="nav-link"><span>Skills</span></a></li>
 	          <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
+	          <li class="nav-item d-none d-lg-block">
+	            <button class="navbar-cmd-trigger cmd-palette-trigger" title="Quick Search (Ctrl + K)">
+	              <span class="icon-search mr-1"></span> <span>Ctrl+K</span>
+	            </button>
+	          </li>
 	        </ul>
 	      </div>
 	    </div>
@@ -50,6 +56,8 @@
 
     <!-- Modern Hero Section -->
     <section id="home-section" class="hero-section-modern">
+      <!-- Data Graph Interactive Particle Canvas -->
+      <canvas id="data-network-canvas"></canvas>
       <div class="hero-glow-bg"></div>
       <div class="container hero-content">
         <div class="row align-items-center">
@@ -554,6 +562,135 @@
 	    </div>
     </section>
 
+    <!-- Interactive Medallion Pipeline Explorer Section -->
+    <section class="ftco-section ftco-no-pt" id="medallion-section">
+      <div class="container">
+        <div class="medallion-pipeline-container ftco-animate">
+          <div class="row align-items-center mb-4">
+            <div class="col-lg-8">
+              <span class="subheading" style="color: var(--primary-accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Architecture Deep-Dive</span>
+              <h3 class="mb-1 text-white font-weight-bold">Interactive Medallion Pipeline Lineage</h3>
+              <p class="text-muted mb-0">Explore how 100K+ raw enterprise records transition from ingestion to decision-ready Gold marts.</p>
+            </div>
+            <div class="col-lg-4 text-lg-right mt-3 mt-lg-0">
+              <a href="https://github.com/Tanmay0029/SQL-Data-Warehouse-and-Analytics" target="_blank" class="btn btn-sm btn-glow-outline">
+                <span class="icon-github mr-1"></span> View Architecture Code
+              </a>
+            </div>
+          </div>
+
+          <!-- Flow Tabs -->
+          <div class="medallion-steps">
+            <div class="medallion-tab tab-bronze" data-stage="bronze">
+              <span class="d-block mb-1 font-weight-bold text-white" style="font-size: 1.1rem;">🥉 Bronze Layer</span>
+              <small class="text-muted">Raw ERP/CRM Landing</small>
+            </div>
+            <div class="medallion-arrow d-none d-md-block">➜</div>
+            <div class="medallion-tab tab-silver" data-stage="silver">
+              <span class="d-block mb-1 font-weight-bold text-white" style="font-size: 1.1rem;">🥈 Silver Layer</span>
+              <small class="text-muted">Cleansed &amp; Conformed</small>
+            </div>
+            <div class="medallion-arrow d-none d-md-block">➜</div>
+            <div class="medallion-tab tab-gold active" data-stage="gold">
+              <span class="d-block mb-1 font-weight-bold text-white" style="font-size: 1.1rem;">🥇 Gold Layer</span>
+              <small class="text-muted">Star Schema Marts &amp; DAX</small>
+            </div>
+          </div>
+
+          <!-- Interactive Details Content Box -->
+          <div class="medallion-content-card" id="medallion-content-box">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="mb-0 text-white font-weight-bold">Gold Layer: Star Schema &amp; Business Marts</h4>
+              <span class="badge badge-warning p-2">Decision-Ready Dimensional Models</span>
+            </div>
+            <p class="text-light" style="line-height: 1.7;">Denormalized Star Schema optimized for high-performance analytical queries and executive Power BI dashboards with pre-computed aggregations.</p>
+            <ul class="pl-3 mb-3" style="color: #cbd5e1; line-height: 1.6;">
+              <li class="mb-1">Central FactSales table linked with DimCustomer, DimProduct, and DimDate.</li>
+              <li class="mb-1">Window functions (LAG, RANK, NTILE) power Pareto 80/20 and customer cohort metrics.</li>
+              <li class="mb-1">Direct connection to Power BI with optimized DAX measures for executive reporting.</li>
+            </ul>
+            <div class="d-flex flex-wrap" style="gap: 8px;">
+              <span class="tech-tag tag-cyan">Star Schema</span>
+              <span class="tech-tag tag-cyan">DAX Measures</span>
+              <span class="tech-tag tag-cyan">Power BI Executive Dashboards</span>
+              <span class="tech-tag tag-cyan">Window Functions</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive SQL Console Section -->
+    <section class="ftco-section ftco-no-pt" id="sql-terminal-section">
+      <div class="container">
+        <div class="row justify-content-center mb-4 pb-2">
+          <div class="col-md-9 heading-section text-center ftco-animate">
+            <span class="subheading" style="color: var(--cyan-accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Live Interactive Sandbox</span>
+            <h2 class="mb-3" style="font-size: 2.2rem; font-weight: 800; color: #ffffff;">Query Tanmay's Career Database</h2>
+            <p style="color: #94a3b8;">Don't just take my word for it. Run live SQL queries right now to inspect my experience, projects, and metrics.</p>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-11 ftco-animate">
+            <div class="sql-terminal-card">
+              <!-- Window Bar -->
+              <div class="sql-window-header">
+                <div class="sql-dots">
+                  <div class="sql-dot dot-red"></div>
+                  <div class="sql-dot dot-yellow"></div>
+                  <div class="sql-dot dot-green"></div>
+                </div>
+                <div class="sql-window-title">
+                  <span class="icon-terminal mr-1"></span> bash &mdash; tanmay_db@analytics:~$ sqlcmd
+                </div>
+                <div>
+                  <small class="badge badge-success px-2 py-1">● DB Connected</small>
+                </div>
+              </div>
+
+              <!-- Terminal Body -->
+              <div class="sql-terminal-body">
+                <!-- Preset Query Buttons -->
+                <div class="mb-3">
+                  <small class="text-muted d-block mb-2 font-weight-bold">⚡ Quick Sample Queries:</small>
+                  <div class="d-flex flex-wrap" style="gap: 8px;">
+                    <button class="sql-preset-btn active" data-sql="SELECT * FROM projects WHERE stack LIKE '%Power BI%';">
+                      📊 Query Power BI Projects
+                    </button>
+                    <button class="sql-preset-btn" data-sql="SELECT company, role, impact FROM experience;">
+                      💼 Query Work Experience
+                    </button>
+                    <button class="sql-preset-btn" data-sql="SELECT skill, category, level FROM skills WHERE category = 'Data Analytics';">
+                      🎯 Query Analytics Skills
+                    </button>
+                    <button class="sql-preset-btn" data-sql="SELECT metric, value, scope FROM career_metrics;">
+                      📈 Query Career Metrics
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Input Prompt -->
+                <div class="sql-input-wrap mb-3">
+                  <span class="sql-prompt">SQL&gt;</span>
+                  <input type="text" id="sql-query-input" class="sql-query-input" value="SELECT * FROM projects WHERE stack LIKE '%Power BI%';" spellcheck="false" autocomplete="off">
+                  <button type="button" id="sql-run-btn" class="sql-run-btn">
+                    <span class="icon-play mr-1"></span> Run Query
+                  </button>
+                </div>
+
+                <!-- Live Results Area -->
+                <div id="sql-output-area" class="sql-output-container">
+                  <!-- Rendered dynamically by creative-effects.js -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Technical & Analytical Skills Section (Data Analytics First!) -->
     <section class="ftco-section" id="skills-section">
       <div class="container">
@@ -975,6 +1112,26 @@
 
       })();
     </script>
+
+    <!-- Command Palette Modal (Ctrl + K / Cmd + K) -->
+    <div id="cmd-palette-modal" class="cmd-palette-backdrop">
+      <div class="cmd-palette-dialog">
+        <div class="cmd-palette-header">
+          <span class="icon-search text-warning" style="font-size: 1.2rem;"></span>
+          <input type="text" id="cmd-palette-input" class="cmd-palette-input" placeholder="Type a command or search (e.g. 'SQL', 'Resume', 'Zenoti')..." autocomplete="off">
+          <small class="cmd-badge">ESC to close</small>
+        </div>
+        <div id="cmd-palette-list" class="cmd-palette-list">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification for Copied Email -->
+    <div id="cmd-toast" class="cmd-toast"></div>
+
+    <!-- Creative & Interactive Effects -->
+    <script src="js/creative-effects.js"></script>
     
   </body>
 </html>

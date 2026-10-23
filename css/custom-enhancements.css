@@ -1090,3 +1090,378 @@ body {
     font-size: 2.2rem;
   }
 }
+
+/* ==========================================================================
+   Creative Feature 1: Hero Data Network Canvas
+   ========================================================================== */
+#data-network-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   Creative Feature 2: Interactive SQL Console
+   ========================================================================== */
+.sql-terminal-card {
+  background: #0d1117 !important;
+  border: 1px solid rgba(255, 189, 57, 0.25) !important;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 189, 57, 0.08);
+  overflow: hidden;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.sql-window-header {
+  background: #161b22;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sql-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.sql-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.sql-dot.dot-red { background: #ff5f56; }
+.sql-dot.dot-yellow { background: #ffbd2e; }
+.sql-dot.dot-green { background: #27c93f; }
+
+.sql-window-title {
+  color: #94a3b8;
+  font-size: 0.82rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.sql-terminal-body {
+  padding: 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.sql-preset-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sql-preset-btn:hover, .sql-preset-btn.active {
+  background: rgba(255, 189, 57, 0.18);
+  border-color: var(--primary-accent);
+  color: var(--primary-accent);
+}
+
+.sql-input-wrap {
+  position: relative;
+  background: #07090c;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: border-color 0.25s ease;
+}
+
+.sql-input-wrap:focus-within {
+  border-color: var(--primary-accent);
+  box-shadow: 0 0 15px rgba(255, 189, 57, 0.2);
+}
+
+.sql-prompt {
+  color: var(--primary-accent);
+  font-weight: 700;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.sql-query-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #00d2ff;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 100%;
+}
+
+.sql-run-btn {
+  background: var(--primary-accent);
+  color: #0b0d11;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.sql-run-btn:hover {
+  transform: scale(1.05);
+  background: #ffc95e;
+}
+
+.sql-output-container {
+  background: #090c10;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 1rem;
+  min-height: 180px;
+}
+
+.sql-result-table th {
+  background: #161b22 !important;
+  color: var(--primary-accent) !important;
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+  border-top: none !important;
+  border-bottom: 2px solid rgba(255, 189, 57, 0.3) !important;
+}
+
+.sql-result-table td {
+  border-color: rgba(255, 255, 255, 0.06) !important;
+  font-size: 0.88rem;
+  color: #e2e8f0;
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   Creative Feature 3: Medallion Architecture Lineage Explorer
+   ========================================================================== */
+.medallion-pipeline-container {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-top: 3rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.medallion-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.medallion-tab {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.2rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.medallion-tab:hover {
+  border-color: rgba(255, 189, 57, 0.4);
+  transform: translateY(-3px);
+}
+
+.medallion-tab.active {
+  background: rgba(255, 189, 57, 0.12);
+  border-color: var(--primary-accent);
+  box-shadow: 0 0 20px rgba(255, 189, 57, 0.18);
+}
+
+.medallion-tab.tab-bronze.active {
+  border-color: #cd7f32;
+  box-shadow: 0 0 20px rgba(205, 127, 50, 0.25);
+  background: rgba(205, 127, 50, 0.12);
+}
+.medallion-tab.tab-silver.active {
+  border-color: #c0c0c0;
+  box-shadow: 0 0 20px rgba(192, 192, 192, 0.25);
+  background: rgba(192, 192, 192, 0.12);
+}
+.medallion-tab.tab-gold.active {
+  border-color: #ffd700;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.25);
+  background: rgba(255, 215, 0, 0.12);
+}
+
+.medallion-arrow {
+  color: var(--primary-accent);
+  font-size: 1.4rem;
+  animation: pulseArrow 1.5s infinite;
+}
+
+@keyframes pulseArrow {
+  0%, 100% { opacity: 0.4; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(4px); }
+}
+
+.medallion-content-card {
+  background: #0d1117;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 1.8rem;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .medallion-steps {
+    flex-direction: column;
+  }
+  .medallion-arrow {
+    transform: rotate(90deg);
+  }
+  @keyframes pulseArrow {
+    0%, 100% { opacity: 0.4; transform: translateY(0) rotate(90deg); }
+    50% { opacity: 1; transform: translateY(4px) rotate(90deg); }
+  }
+}
+
+/* ==========================================================================
+   Creative Feature 4: Command Palette (Ctrl + K / Cmd + K)
+   ========================================================================== */
+.navbar-cmd-trigger {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 5px 14px;
+  color: #cbd5e1;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+  margin-left: 12px;
+}
+
+.navbar-cmd-trigger:hover {
+  background: rgba(255, 189, 57, 0.15);
+  border-color: var(--primary-accent);
+  color: var(--primary-accent);
+}
+
+.cmd-palette-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 99999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.cmd-palette-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cmd-palette-dialog {
+  background: #161b22;
+  border: 1px solid rgba(255, 189, 57, 0.35);
+  border-radius: 16px;
+  width: 90%;
+  max-width: 620px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 189, 57, 0.15);
+  overflow: hidden;
+  transform: scale(0.96);
+  transition: transform 0.2s ease;
+}
+
+.cmd-palette-backdrop.active .cmd-palette-dialog {
+  transform: scale(1);
+}
+
+.cmd-palette-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cmd-palette-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  width: 100%;
+}
+
+.cmd-palette-list {
+  max-height: 360px;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.cmd-item {
+  padding: 12px 16px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.cmd-item:hover, .cmd-item.selected {
+  background: rgba(255, 189, 57, 0.15);
+}
+
+.cmd-badge {
+  font-size: 0.72rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.cmd-toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #10b981;
+  color: #0b0d11;
+  font-weight: 700;
+  padding: 12px 22px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  z-index: 999999;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.cmd-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
