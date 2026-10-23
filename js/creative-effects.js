@@ -1,6 +1,6 @@
 /**
  * Creative & Interactive Effects - Tanmay Agrawal Portfolio
- * 1. Data Network Particle Canvas (Hero)
+ * 1. Fluid Data Waves / Stream Flow (Hero)
  * 2. 3D Card Tilt Effects
  * 3. Command Palette (Ctrl + K)
  * 4. Interactive In-Browser SQL Console
@@ -11,18 +11,16 @@
   "use strict";
 
   // =========================================================================
-  // 1. Data Network Particle Canvas (Hero Background)
+  // 1. Fluid Data Waves / Stream Flow (Hero Background)
   // =========================================================================
-  function initDataNetwork() {
+  function initFluidDataWaves() {
     const canvas = document.getElementById("data-network-canvas");
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
-    let width, height;
-    let particles = [];
-    const particleCount = 45;
-    const maxDistance = 140;
+    let width = 0, height = 0;
+    let animationFrameId;
 
-    let mouse = { x: -1000, y: -1000, radius: 160 };
+    let mouse = { x: -1000, y: -1000, targetX: -1000, targetY: -1000, radius: 240, force: 48 };
 
     function resize() {
       const parent = canvas.parentElement;
@@ -32,87 +30,210 @@
     resize();
     window.addEventListener("resize", resize);
 
+    // Track mouse over hero section or viewport
     window.addEventListener("mousemove", function(e) {
       const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
+      if (e.clientY <= rect.bottom + 80 && e.clientY >= rect.top - 80) {
+        mouse.targetX = e.clientX - rect.left;
+        mouse.targetY = e.clientY - rect.top;
+      } else {
+        mouse.targetX = -1000;
+        mouse.targetY = -1000;
+      }
     });
 
     window.addEventListener("mouseleave", function() {
-      mouse.x = -1000;
-      mouse.y = -1000;
+      mouse.targetX = -1000;
+      mouse.targetY = -1000;
     });
 
-    class Particle {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.7;
-        this.vy = (Math.random() - 0.5) * 0.7;
-        this.radius = Math.random() * 2 + 1.5;
-        this.color = Math.random() > 0.4 ? "rgba(255, 189, 57, " : "rgba(0, 210, 255, ";
+    // Waves definition: Layered multi-frequency curves inspired by time-series analytical distributions
+    const waves = [
+      {
+        yRatio: 0.60,
+        amplitude: 44,
+        wavelength: 0.0032,
+        speed: 0.012,
+        phase: 0,
+        colorStart: "rgba(0, 242, 254, 0.75)",
+        colorEnd: "rgba(139, 92, 246, 0.85)",
+        fillGradient: true,
+        fillColorStart: "rgba(0, 242, 254, 0.07)",
+        fillColorEnd: "rgba(139, 92, 246, 0.01)",
+        lineWidth: 2.4,
+        samplePoints: true
+      },
+      {
+        yRatio: 0.67,
+        amplitude: 54,
+        wavelength: 0.0025,
+        speed: -0.009,
+        phase: 1.8,
+        colorStart: "rgba(139, 92, 246, 0.7)",
+        colorEnd: "rgba(56, 189, 248, 0.7)",
+        fillGradient: true,
+        fillColorStart: "rgba(139, 92, 246, 0.06)",
+        fillColorEnd: "rgba(6, 8, 14, 0.0)",
+        lineWidth: 1.9,
+        samplePoints: false
+      },
+      {
+        yRatio: 0.52,
+        amplitude: 28,
+        wavelength: 0.0052,
+        speed: 0.015,
+        phase: 3.5,
+        colorStart: "rgba(168, 85, 247, 0.55)",
+        colorEnd: "rgba(0, 242, 254, 0.55)",
+        fillGradient: false,
+        lineWidth: 1.5,
+        samplePoints: true
+      },
+      {
+        yRatio: 0.75,
+        amplitude: 62,
+        wavelength: 0.0019,
+        speed: 0.007,
+        phase: 0.8,
+        colorStart: "rgba(59, 130, 246, 0.4)",
+        colorEnd: "rgba(147, 51, 234, 0.3)",
+        fillGradient: true,
+        fillColorStart: "rgba(59, 130, 246, 0.04)",
+        fillColorEnd: "rgba(6, 8, 14, 0.0)",
+        lineWidth: 1.3,
+        samplePoints: false
       }
+    ];
 
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
+    // Floating ambient data particles drifting along stream current
+    const particles = [];
+    const particleCount = 28;
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * (width || 1200),
+        y: Math.random() * (height || 800),
+        size: Math.random() * 2 + 1,
+        vx: Math.random() * 0.45 + 0.2,
+        vy: (Math.random() - 0.5) * 0.22,
+        alpha: Math.random() * 0.5 + 0.25,
+        color: Math.random() > 0.5 ? "0, 242, 254" : "139, 92, 246"
+      });
+    }
 
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
+    function render() {
+      // Smooth mouse spring interpolation
+      mouse.x += (mouse.targetX - mouse.x) * 0.08;
+      mouse.y += (mouse.targetY - mouse.y) * 0.08;
 
-        // Mouse proximity reaction
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < mouse.radius) {
-          const force = (mouse.radius - dist) / mouse.radius;
-          this.x -= (dx / dist) * force * 2;
-          this.y -= (dy / dist) * force * 2;
-        }
-      }
+      ctx.clearRect(0, 0, width, height);
 
-      draw() {
+      // 1. Draw floating ambient data nodes drifting horizontally
+      for (let p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x > width + 20) p.x = -20;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = this.color + "0.75)";
-        ctx.shadowBlur = 6;
-        ctx.shadowColor = this.color + "0.6)";
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${p.color}, ${p.alpha})`;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = `rgba(${p.color}, 0.8)`;
         ctx.fill();
         ctx.shadowBlur = 0;
       }
-    }
 
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
+      // 2. Render each wave
+      for (let w of waves) {
+        w.phase += w.speed;
+        const baseY = height * w.yRatio;
 
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
+        // Create linear gradient across width
+        const grad = ctx.createLinearGradient(0, 0, width, 0);
+        grad.addColorStop(0, w.colorStart);
+        grad.addColorStop(0.5, w.colorEnd);
+        grad.addColorStop(1, w.colorStart);
 
-      // Connect nodes with edges
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
+        ctx.beginPath();
+        ctx.moveTo(0, baseY);
 
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+        const pointInterval = 6;
+        const wavePoints = [];
 
-          if (dist < maxDistance) {
-            const alpha = (1 - dist / maxDistance) * 0.25;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(255, 189, 57, ${alpha})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
+        for (let x = 0; x <= width + pointInterval; x += pointInterval) {
+          // Compound harmonics
+          let waveOffset = Math.sin(x * w.wavelength + w.phase) * w.amplitude;
+          waveOffset += Math.cos(x * w.wavelength * 0.55 + w.phase * 0.75) * (w.amplitude * 0.32);
+
+          // Mouse fluid wave reaction
+          if (mouse.x > -500) {
+            const dx = x - mouse.x;
+            const dy = (baseY + waveOffset) - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < mouse.radius) {
+              const ripple = Math.cos((dist / mouse.radius) * (Math.PI / 2));
+              waveOffset += ripple * mouse.force * (dy > 0 ? 1 : -0.7);
+            }
+          }
+
+          const currentY = baseY + waveOffset;
+          wavePoints.push({ x, y: currentY });
+
+          if (x === 0) {
+            ctx.moveTo(x, currentY);
+          } else {
+            ctx.lineTo(x, currentY);
+          }
+        }
+
+        // Stroke line
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = w.lineWidth;
+        ctx.stroke();
+
+        // Optional fill gradient to bottom
+        if (w.fillGradient) {
+          ctx.lineTo(width, height);
+          ctx.lineTo(0, height);
+          ctx.closePath();
+          const fillGrad = ctx.createLinearGradient(0, baseY - w.amplitude, 0, height);
+          fillGrad.addColorStop(0, w.fillColorStart);
+          fillGrad.addColorStop(1, w.fillColorEnd);
+          ctx.fillStyle = fillGrad;
+          ctx.fill();
+        }
+
+        // Discrete sample points along wave crest (analytical time-series indicators)
+        if (w.samplePoints) {
+          const sampleStep = 80;
+          for (let pt of wavePoints) {
+            if (Math.round(pt.x) % sampleStep < pointInterval) {
+              // Glowing data node
+              ctx.beginPath();
+              ctx.arc(pt.x, pt.y, 3, 0, Math.PI * 2);
+              ctx.fillStyle = "#ffffff";
+              ctx.shadowBlur = 10;
+              ctx.shadowColor = w.colorStart;
+              ctx.fill();
+              ctx.shadowBlur = 0;
+
+              // Subtle coordinate stem dropped down 14px
+              ctx.beginPath();
+              ctx.moveTo(pt.x, pt.y);
+              ctx.lineTo(pt.x, pt.y + 14);
+              ctx.strokeStyle = "rgba(255, 255, 255, 0.18)";
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
           }
         }
       }
-      requestAnimationFrame(animate);
+
+      animationFrameId = requestAnimationFrame(render);
     }
-    animate();
+
+    render();
   }
 
   // =========================================================================
@@ -503,7 +624,7 @@
   // Initialize Everything on DOM Load
   // =========================================================================
   document.addEventListener("DOMContentLoaded", function() {
-    initDataNetwork();
+    initFluidDataWaves();
     initCardTilt();
     initSqlConsole();
     initMedallionExplorer();
