@@ -1818,3 +1818,26 @@ body.theme-gotham-crimson .btn-glow-outline:hover,
   opacity: 1;
   transform: translateY(0);
 }
+
+/* X (formerly Twitter) Footer Social Icon */
+.ftco-footer-social li a.social-x-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #cbd5e1 !important;
+}
+
+.ftco-footer-social li a.social-x-btn svg {
+  display: block;
+  transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+.ftco-footer-social li a.social-x-btn:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+}
+
+.ftco-footer-social li a.social-x-btn:hover svg {
+  transform: scale(1.15);
+  fill: #ffffff;
+}
