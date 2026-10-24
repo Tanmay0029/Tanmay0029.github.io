@@ -1065,6 +1065,27 @@ body.theme-gotham-crimson .btn-glow-outline:hover,
   box-shadow: 0 4px 15px var(--primary-glow);
 }
 
+/* Project Item Filtering & Zero-Gap Grid Alignment */
+.project-item {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.project-item.d-none,
+.project-item.is-hidden {
+  display: none !important;
+}
+
+.project-item.d-flex,
+.project-item.is-visible {
+  display: flex !important;
+}
+
+#projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
 .project-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);

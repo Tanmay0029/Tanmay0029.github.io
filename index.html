@@ -1089,7 +1089,7 @@
         }
         typeLoop();
 
-        // 2. Interactive Project Filtering
+        // 2. Interactive Project Filtering (Zero Gap on Any Screen / Category)
         const filterBtns = document.querySelectorAll(".filter-btn");
         const projectItems = document.querySelectorAll(".project-item");
 
@@ -1101,23 +1101,36 @@
             const filterValue = this.getAttribute("data-filter");
 
             projectItems.forEach(item => {
+              if (item._filterTimeout) {
+                clearTimeout(item._filterTimeout);
+                item._filterTimeout = null;
+              }
+
               const category = item.getAttribute("data-category");
-              if (filterValue === "all" || category === filterValue) {
-                item.style.display = "flex";
+              const isMatch = (filterValue === "all" || category === filterValue);
+
+              if (isMatch) {
+                // Instantly remove d-none and restore flex so it fills the next available grid spot
+                item.classList.remove("d-none", "is-hidden");
+                item.classList.add("d-flex", "is-visible");
+                item.style.removeProperty("display");
                 item.style.opacity = "0";
-                item.style.transform = "scale(0.95)";
-                setTimeout(() => {
-                  item.style.transition = "all 0.35s ease";
+                item.style.transform = "scale(0.96)";
+
+                item._filterTimeout = setTimeout(() => {
+                  item.style.transition = "opacity 0.3s ease, transform 0.3s ease";
                   item.style.opacity = "1";
                   item.style.transform = "scale(1)";
-                }, 50);
+                }, 20);
               } else {
-                item.style.transition = "all 0.25s ease";
+                item.style.transition = "opacity 0.2s ease, transform 0.2s ease";
                 item.style.opacity = "0";
-                item.style.transform = "scale(0.95)";
-                setTimeout(() => {
-                  item.style.display = "none";
-                }, 250);
+                item.style.transform = "scale(0.96)";
+
+                item._filterTimeout = setTimeout(() => {
+                  item.classList.remove("d-flex", "is-visible");
+                  item.classList.add("d-none", "is-hidden");
+                }, 200);
               }
             });
           });
