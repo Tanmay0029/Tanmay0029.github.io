@@ -934,6 +934,10 @@ body.theme-gotham-crimson .btn-glow-outline:hover,
   margin-bottom: 2.2rem;
 }
 
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
 .timeline-dot {
   position: absolute;
   left: -28px;

@@ -486,6 +486,11 @@
       { metric: "Industry Internships", value: "2", scope: "Zenoti & Aligned Automation" },
       { metric: "Strategic SQL Queries", value: "15+", scope: "Window Functions (LAG, RANK, NTILE)" },
       { metric: "LLM Inference Acceleration", value: "90%", scope: "DirectML GPU Optimization" }
+    ],
+    education: [
+      { institution: "Vellore Institute of Technology (VIT)", degree: "B.Tech Computer Science & Engineering", period: "Sep 2022 – Present", score: "CGPA: 9.09 / 10", location: "Vellore, India" },
+      { institution: "Maharishi Vidya Mandir", degree: "Higher Secondary School (Class XII)", period: "May 2021 – June 2022", score: "Percentage: 94%", location: "Raipur, India" },
+      { institution: "The Radiant Way School", degree: "Secondary School (Class X)", period: "Jan 2019 – Mar 2020", score: "Percentage: 95%", location: "Raipur, India" }
     ]
   };
 
@@ -508,6 +513,9 @@
       if (lower.includes("from experience")) {
         tableName = "experience";
         results = careerDB.experience;
+      } else if (lower.includes("from education")) {
+        tableName = "education";
+        results = careerDB.education;
       } else if (lower.includes("from skills")) {
         tableName = "skills";
         if (lower.includes("where category")) {
