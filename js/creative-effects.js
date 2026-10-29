@@ -488,9 +488,9 @@
       { metric: "LLM Inference Acceleration", value: "90%", scope: "DirectML GPU Optimization" }
     ],
     education: [
-      { institution: "Vellore Institute of Technology (VIT)", degree: "B.Tech Computer Science & Engineering", period: "Sep 2022 – Present", score: "CGPA: 9.09 / 10", location: "Vellore, India" },
-      { institution: "Maharishi Vidya Mandir", degree: "Higher Secondary School (Class XII)", period: "May 2021 – June 2022", score: "Percentage: 94%", location: "Raipur, India" },
-      { institution: "The Radiant Way School", degree: "Secondary School (Class X)", period: "Jan 2019 – Mar 2020", score: "Percentage: 95%", location: "Raipur, India" }
+      { institution: "Vellore Institute of Technology (VIT)", degree: "B.Tech Computer Science & Engineering", period: "Sep 2022 – Present", score: "CGPA: 9.09 / 10", board: "Autonomous / Deemed", honors: "Consistent High Standing", location: "Vellore, India" },
+      { institution: "Maharishi Vidya Mandir", degree: "Higher Secondary School (Class XII)", period: "May 2021 – June 2022", score: "Percentage: 94%", board: "CBSE (Science Stream)", honors: "Stream Rank 1 (Rank Holder)", location: "Raipur, India" },
+      { institution: "The Radiant Way School", degree: "Secondary School (Class X)", period: "Jan 2019 – Mar 2020", score: "Percentage: 95%", board: "ICSE Board", honors: "Top 5 Rank Holder", location: "Raipur, India" }
     ]
   };
 
