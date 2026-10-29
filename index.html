@@ -1140,52 +1140,59 @@
         }
         typeLoop();
 
-        // 2. Interactive Project Filtering (Zero Gap on Any Screen / Category)
+        // 2. Interactive Project Filtering (Unified, Butter-Smooth Fluid Transition)
         const filterBtns = document.querySelectorAll(".filter-btn");
+        const projectsGrid = document.getElementById("projects-grid");
         const projectItems = document.querySelectorAll(".project-item");
 
-        filterBtns.forEach(btn => {
-          btn.addEventListener("click", function() {
-            filterBtns.forEach(b => b.classList.remove("active"));
-            this.classList.add("active");
+        if (filterBtns.length && projectsGrid) {
+          let isFiltering = false;
 
-            const filterValue = this.getAttribute("data-filter");
+          filterBtns.forEach(btn => {
+            btn.addEventListener("click", function() {
+              if (this.classList.contains("active") || isFiltering) return;
 
-            projectItems.forEach(item => {
-              if (item._filterTimeout) {
-                clearTimeout(item._filterTimeout);
-                item._filterTimeout = null;
-              }
+              filterBtns.forEach(b => b.classList.remove("active"));
+              this.classList.add("active");
 
-              const category = item.getAttribute("data-category");
-              const isMatch = (filterValue === "all" || category === filterValue);
+              const filterValue = this.getAttribute("data-filter");
+              isFiltering = true;
 
-              if (isMatch) {
-                // Instantly remove d-none and restore flex so it fills the next available grid spot
-                item.classList.remove("d-none", "is-hidden");
-                item.classList.add("d-flex", "is-visible");
-                item.style.removeProperty("display");
-                item.style.opacity = "0";
-                item.style.transform = "scale(0.96)";
+              // Step 1: Smoothly fade out current items together without individual stagger
+              projectsGrid.style.transition = "opacity 0.18s ease, transform 0.18s ease";
+              projectsGrid.style.opacity = "0";
+              projectsGrid.style.transform = "translateY(8px)";
 
-                item._filterTimeout = setTimeout(() => {
-                  item.style.transition = "opacity 0.3s ease, transform 0.3s ease";
-                  item.style.opacity = "1";
-                  item.style.transform = "scale(1)";
-                }, 20);
-              } else {
-                item.style.transition = "opacity 0.2s ease, transform 0.2s ease";
-                item.style.opacity = "0";
-                item.style.transform = "scale(0.96)";
+              setTimeout(() => {
+                // Step 2: Instantly reflow DOM while invisible (eliminates all layout jump/scuff)
+                projectItems.forEach(item => {
+                  const category = item.getAttribute("data-category");
+                  const isMatch = (filterValue === "all" || category === filterValue);
 
-                item._filterTimeout = setTimeout(() => {
-                  item.classList.remove("d-flex", "is-visible");
-                  item.classList.add("d-none", "is-hidden");
-                }, 200);
-              }
+                  if (isMatch) {
+                    item.classList.remove("d-none", "is-hidden");
+                    item.classList.add("d-flex", "is-visible");
+                    item.style.display = "flex";
+                  } else {
+                    item.classList.remove("d-flex", "is-visible");
+                    item.classList.add("d-none", "is-hidden");
+                    item.style.display = "none";
+                  }
+                });
+
+                // Step 3: Butter-smooth fluid bloom-in
+                requestAnimationFrame(() => {
+                  setTimeout(() => {
+                    projectsGrid.style.transition = "opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1)";
+                    projectsGrid.style.opacity = "1";
+                    projectsGrid.style.transform = "translateY(0)";
+                    isFiltering = false;
+                  }, 20);
+                });
+              }, 180);
             });
           });
-        });
+        }
 
         // 3. Smooth Mobile Nav Collapse on Click
         document.querySelectorAll("#ftco-nav .nav-link").forEach(link => {

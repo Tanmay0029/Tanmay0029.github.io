@@ -1071,7 +1071,7 @@ body.theme-gotham-crimson .btn-glow-outline:hover,
 
 /* Project Item Filtering & Zero-Gap Grid Alignment */
 .project-item {
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  width: 100%;
 }
 
 .project-item.d-none,
@@ -1088,6 +1088,7 @@ body.theme-gotham-crimson .btn-glow-outline:hover,
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
+  will-change: opacity, transform;
 }
 
 .project-card {
