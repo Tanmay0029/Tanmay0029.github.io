@@ -457,7 +457,7 @@
   }
 
   // =========================================================================
-  // 3. Interactive In-Browser SQL Console
+  // 3. Interactive In-Browser SQL Console Sandbox
   // =========================================================================
   const careerDB = {
     projects: [
@@ -468,31 +468,40 @@
       { id: 5, project: "Tomato Leaf Disease Prediction", stack: "Python, ResNet152V2, TensorFlow, Flask", records: "98.2% Accuracy", category: "Computer Vision" }
     ],
     experience: [
-      { company: "Zenoti India Private Limited", role: "SDE Intern (Data & Backend)", period: "Jan 2026 – Jul 2026", impact: "Fixed export defect; eliminated 6 OWASP data vulnerabilities; 12 API specs; resolved 10+ incidents across 30+ pages." },
-      { company: "Aligned Automation", role: "AI and Python Intern", period: "Dec 2024 – Jan 2025", impact: "DirectML GPU acceleration (90% faster inference); 35% system failure reduction via structured pipelines." }
-    ],
-    skills: [
-      { skill: "SQL Server / T-SQL", category: "Data Analytics", level: "Advanced" },
-      { skill: "Power BI (DAX / Power Query)", category: "Data Analytics", level: "Advanced" },
-      { skill: "Medallion (Bronze/Silver/Gold)", category: "Data Architecture", level: "Expert" },
-      { skill: "Star Schema & Dimensional Modeling", category: "Data Architecture", level: "Advanced" },
-      { skill: "Python (Pandas, NumPy)", category: "Languages & Analytics", level: "Advanced" },
-      { skill: "FastAPI / PostgreSQL", category: "Data Backend", level: "Intermediate" },
-      { skill: "RFM & Cohort Analysis", category: "Business Intelligence", level: "Advanced" }
-    ],
-    metrics: [
-      { metric: "Transactions Modeled", value: "1,000,000+", scope: "Retail Data Warehouse" },
-      { metric: "VIT Academic CGPA", value: "9.09 / 10", scope: "B.Tech Computer Science" },
-      { metric: "Industry Internships", value: "2", scope: "Zenoti & Aligned Automation" },
-      { metric: "Strategic SQL Queries", value: "15+", scope: "Window Functions (LAG, RANK, NTILE)" },
-      { metric: "LLM Inference Acceleration", value: "90%", scope: "DirectML GPU Optimization" }
+      { id: 1, company: "Zenoti India Private Limited", role: "SDE Intern (Data & Backend)", period: "Jan 2026 – Jul 2026", impact: "Fixed export defect; eliminated 6 OWASP data vulnerabilities; 12 API specs; resolved 10+ incidents across 30+ pages." },
+      { id: 2, company: "Aligned Automation", role: "AI and Python Intern", period: "Dec 2024 – Jan 2025", impact: "DirectML GPU acceleration (90% faster inference); 35% system failure reduction via structured pipelines." }
     ],
     education: [
-      { institution: "Vellore Institute of Technology (VIT)", degree: "B.Tech Computer Science & Engineering", period: "Sep 2022 – Present", score: "CGPA: 9.09 / 10", board: "Autonomous / Deemed", honors: "Consistent High Standing", location: "Vellore, India" },
-      { institution: "Maharishi Vidya Mandir", degree: "Higher Secondary School (Class XII)", period: "May 2021 – June 2022", score: "Percentage: 94%", board: "CBSE (Science Stream)", honors: "Stream Rank 1 (Rank Holder)", location: "Raipur, India" },
-      { institution: "The Radiant Way School", degree: "Secondary School (Class X)", period: "Jan 2019 – Mar 2020", score: "Percentage: 95%", board: "ICSE Board", honors: "Top 5 Rank Holder", location: "Raipur, India" }
+      { id: 1, institution: "Vellore Institute of Technology (VIT)", degree: "B.Tech Computer Science & Engineering", period: "Sep 2022 – Present", score: "CGPA: 9.09 / 10", board: "Autonomous / Deemed", honors: "Consistent High Standing", location: "Vellore, Tamil Nadu, India" },
+      { id: 2, institution: "Maharishi Vidya Mandir", degree: "Higher Secondary School (Class XII)", period: "May 2021 – June 2022", score: "Percentage: 94%", board: "CBSE (Science Stream)", honors: "Stream Rank 1 (Rank Holder)", location: "Raipur, Chhattisgarh, India" },
+      { id: 3, institution: "The Radiant Way School", degree: "Secondary School (Class X)", period: "Jan 2019 – Mar 2020", score: "Percentage: 95%", board: "ICSE Board", honors: "Top 5 Rank Holder", location: "Raipur, Chhattisgarh, India" }
+    ],
+    skills: [
+      { id: 1, skill: "SQL Server / T-SQL", category: "Data Analytics", level: "Advanced" },
+      { id: 2, skill: "Power BI (DAX / Power Query)", category: "Data Analytics", level: "Advanced" },
+      { id: 3, skill: "Medallion (Bronze/Silver/Gold)", category: "Data Architecture", level: "Expert" },
+      { id: 4, skill: "Star Schema & Dimensional Modeling", category: "Data Architecture", level: "Advanced" },
+      { id: 5, skill: "Python (Pandas, NumPy)", category: "Languages & Analytics", level: "Advanced" },
+      { id: 6, skill: "FastAPI / PostgreSQL", category: "Data Backend", level: "Intermediate" },
+      { id: 7, skill: "RFM & Cohort Analysis", category: "Business Intelligence", level: "Advanced" }
+    ],
+    metrics: [
+      { id: 1, metric: "Transactions & Records Modeled", value: "5,000,000+", scope: "Multi-Project Data Warehouses, Pipelines & Backends" },
+      { id: 2, metric: "Retail Single-Project Scale", value: "1,000,000+", scope: "Star Schema (FactSales & Conformed Dims)" },
+      { id: 3, metric: "VIT Academic CGPA", value: "9.09 / 10", scope: "B.Tech Computer Science" },
+      { id: 4, metric: "Industry Internships", value: "2", scope: "Zenoti & Aligned Automation" },
+      { id: 5, metric: "Strategic SQL Queries", value: "15+", scope: "Window Functions (LAG, RANK, NTILE)" },
+      { id: 6, metric: "LLM Inference Acceleration", value: "90%", scope: "DirectML GPU Optimization" }
     ]
   };
+
+  const tableCatalog = [
+    { table_name: "projects", row_count: 5, description: "Enterprise Medallion warehouses, BI dashboards & production backends" },
+    { table_name: "experience", row_count: 2, description: "Software development & AI internship records at Zenoti & Aligned Automation" },
+    { table_name: "education", row_count: 3, description: "Academic progression: VIT (CGPA 9.09), MVM Class XII (94% Rank 1), Radiant Way Class X (95% Top 5)" },
+    { table_name: "skills", row_count: 7, description: "Core technical capabilities across data analytics, architecture & backends" },
+    { table_name: "metrics", row_count: 6, description: "Verified impact benchmarks: 5M+ records modeled, 90% GPU speedup, 98.2% AI accuracy" }
+  ];
 
   function initSqlConsole() {
     const input = document.getElementById("sql-query-input");
@@ -502,72 +511,253 @@
 
     if (!input || !runBtn || !outputArea) return;
 
+    const queryHistory = [];
+    let historyIdx = -1;
+
+    function escapeHtml(str) {
+      return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
     function executeQuery(queryText) {
       const startTime = performance.now();
-      const clean = queryText.trim().replace(/;$/, "");
+      const raw = (queryText || "").trim();
+      const clean = raw.replace(/;+\s*$/, "").trim();
       const lower = clean.toLowerCase();
 
-      let results = [];
-      let tableName = "projects";
+      // Track history
+      if (clean && !queryHistory.includes(clean)) {
+        queryHistory.push(clean);
+      }
+      historyIdx = queryHistory.length;
 
-      if (lower.includes("from experience")) {
-        tableName = "experience";
-        results = careerDB.experience;
-      } else if (lower.includes("from education")) {
-        tableName = "education";
-        results = careerDB.education;
-      } else if (lower.includes("from skills")) {
-        tableName = "skills";
-        if (lower.includes("where category")) {
-          results = careerDB.skills.filter(s => s.category.toLowerCase().includes("analytics") || s.category.toLowerCase().includes("architecture"));
-        } else {
-          results = careerDB.skills;
-        }
-      } else if (lower.includes("from career_metrics") || lower.includes("from metrics")) {
-        tableName = "metrics";
-        results = careerDB.metrics;
-      } else {
-        tableName = "projects";
-        results = careerDB.projects;
+      // 1. Guard empty
+      if (!clean) {
+        renderError("Query is empty. Try running a query like SELECT * FROM education; or SHOW TABLES;", "0.00");
+        return;
       }
 
-      // Handle simple WHERE filters
-      if (lower.includes("where") && tableName === "projects") {
-        if (lower.includes("power bi")) {
-          results = results.filter(p => p.stack.includes("Power BI"));
-        } else if (lower.includes("python")) {
-          results = results.filter(p => p.stack.includes("Python"));
+      // 2. Help & Catalog commands
+      if (lower === "show tables" || lower === "show databases" || lower === "tables" || lower === "list tables") {
+        const elapsed = (performance.now() - startTime).toFixed(2);
+        renderTable(tableCatalog, clean, elapsed, "table_catalog");
+        return;
+      }
+
+      if (lower === "help" || lower === "?" || lower === "\\h") {
+        const helpData = [
+          { command: "SHOW TABLES;", description: "List all accessible tables in the database" },
+          { command: "SELECT * FROM education;", description: "Query academic progression, CGPA, and ranks" },
+          { command: "SELECT * FROM experience;", description: "Query software engineering internships & live client impact" },
+          { command: "SELECT * FROM projects WHERE stack LIKE '%Power BI%';", description: "Filter projects by technology stack" },
+          { command: "SELECT * FROM skills WHERE category = 'Data Analytics';", description: "Filter skills by technical domain" },
+          { command: "SELECT * FROM metrics;", description: "Inspect verified impact figures (5M+ modeled, 90% inference speedup)" },
+          { command: "DESCRIBE <table_name>;", description: "Inspect schema and column definitions" }
+        ];
+        const elapsed = (performance.now() - startTime).toFixed(2);
+        renderTable(helpData, clean, elapsed, "help_documentation");
+        return;
+      }
+
+      // 3. DESCRIBE / DESC <table>
+      const descMatch = clean.match(/^(?:describe|desc)\s+([a-zA-Z0-9_]+)/i);
+      if (descMatch) {
+        let tName = descMatch[1].toLowerCase();
+        if (tName === "career_metrics") tName = "metrics";
+        if (careerDB[tName] && careerDB[tName].length > 0) {
+          const sample = careerDB[tName][0];
+          const schema = Object.keys(sample).map(col => ({
+            column_name: col,
+            data_type: typeof sample[col] === "number" ? "INT" : "NVARCHAR(MAX)",
+            nullable: "NO",
+            sample_value: String(sample[col]).substring(0, 45)
+          }));
+          const elapsed = (performance.now() - startTime).toFixed(2);
+          renderTable(schema, clean, elapsed, `schema_${tName}`);
+          return;
+        } else {
+          const elapsed = (performance.now() - startTime).toFixed(2);
+          renderTableNotFound(descMatch[1], elapsed);
+          return;
+        }
+      }
+
+      // 4. System variables (SELECT @@VERSION, SELECT 1, etc.)
+      if (/^select\s+(?:@@version|1|version\(\)|current_user)/i.test(clean)) {
+        const elapsed = (performance.now() - startTime).toFixed(2);
+        const sysInfo = [{
+          database: "tanmay_analytics",
+          engine_version: "v2026.1 (Interactive SQL Engine)",
+          dialect: "ANSI SQL / T-SQL Compatible",
+          session_mode: "READ_COMMITTED (Read-Only)",
+          user: "recruiter_guest@portfolio"
+        }];
+        renderTable(sysInfo, clean, elapsed, "system_metadata");
+        return;
+      }
+
+      // 5. Guard against write operations with realistic DB error
+      if (/^(drop|delete|update|insert|alter|truncate|create|grant|revoke)\b/i.test(clean)) {
+        const elapsed = (performance.now() - startTime).toFixed(2);
+        renderError(`[SQLCMD-403] Read-Only Session: Transactions are isolated under READ COMMITTED. Modifying career records is restricted.`, elapsed);
+        return;
+      }
+
+      // 6. Must be a SELECT query
+      if (!lower.startsWith("select")) {
+        const elapsed = (performance.now() - startTime).toFixed(2);
+        renderError(`[SQLCMD-400] Syntax Error: Unrecognized statement '${clean.split(' ')[0]}'. Only SELECT and SHOW commands are supported in this sandbox.`, elapsed);
+        return;
+      }
+
+      // 7. Extract FROM table
+      const fromMatch = clean.match(/\bfrom\s+([a-zA-Z0-9_]+)/i);
+      if (!fromMatch) {
+        const elapsed = (performance.now() - startTime).toFixed(2);
+        renderError(`[SQLCMD-400] Syntax Error: Missing FROM clause in query: "${clean}". Try "SELECT * FROM education;" or "SHOW TABLES;"`, elapsed);
+        return;
+      }
+
+      let tableKey = fromMatch[1].toLowerCase();
+      // Handle friendly aliases
+      if (tableKey === "career_metrics" || tableKey === "career_metric") tableKey = "metrics";
+      if (tableKey === "internships" || tableKey === "work_experience" || tableKey === "jobs") tableKey = "experience";
+      if (tableKey === "academics" || tableKey === "school" || tableKey === "college") tableKey = "education";
+      if (tableKey === "portfolio_projects" || tableKey === "portfolio") tableKey = "projects";
+
+      if (!careerDB[tableKey]) {
+        const elapsed = (performance.now() - startTime).toFixed(2);
+        renderTableNotFound(fromMatch[1], elapsed);
+        return;
+      }
+
+      let data = careerDB[tableKey].map(item => ({ ...item }));
+
+      // 8. Handle WHERE condition
+      const whereMatch = clean.match(/\bwhere\s+(.+?)(?:\s+order\s+by|\s+limit|$)/i);
+      if (whereMatch) {
+        const cond = whereMatch[1].trim();
+        data = filterRows(data, cond);
+      }
+
+      // 9. Handle ORDER BY
+      const orderMatch = clean.match(/\border\s+by\s+([a-zA-Z0-9_]+)(?:\s+(asc|desc))?/i);
+      if (orderMatch && data.length > 0) {
+        const sortCol = orderMatch[1].toLowerCase();
+        const sortDir = (orderMatch[2] || "asc").toLowerCase();
+        const key = Object.keys(data[0]).find(k => k.toLowerCase() === sortCol);
+        if (key) {
+          data.sort((a, b) => {
+            let valA = a[key], valB = b[key];
+            if (typeof valA === "number" && typeof valB === "number") {
+              return sortDir === "desc" ? valB - valA : valA - valB;
+            }
+            return sortDir === "desc"
+              ? String(valB).localeCompare(String(valA))
+              : String(valA).localeCompare(String(valB));
+          });
+        }
+      }
+
+      // 10. Handle LIMIT
+      const limitMatch = clean.match(/\blimit\s+(\d+)/i);
+      if (limitMatch) {
+        const count = parseInt(limitMatch[1], 10);
+        if (!isNaN(count) && count > 0) {
+          data = data.slice(0, count);
+        }
+      }
+
+      // 11. Column Projection
+      const selectMatch = clean.match(/^select\s+(.+?)\s+from\b/i);
+      if (selectMatch && selectMatch[1].trim() !== "*" && data.length > 0) {
+        const reqCols = selectMatch[1].split(",").map(c => c.trim().toLowerCase());
+        const availableKeys = Object.keys(data[0]);
+        const matchedKeys = availableKeys.filter(k => reqCols.includes(k.toLowerCase()));
+        if (matchedKeys.length > 0) {
+          data = data.map(row => {
+            const projected = {};
+            matchedKeys.forEach(k => { projected[k] = row[k]; });
+            return projected;
+          });
         }
       }
 
       const elapsed = (performance.now() - startTime).toFixed(2);
-      renderTable(results, clean, elapsed);
-    }
 
-    function renderTable(data, query, elapsed) {
-      if (!data || data.length === 0) {
-        outputArea.innerHTML = `<div class="p-3 text-warning">Query executed in ${elapsed}ms. (0 rows returned)</div>`;
+      if (data.length === 0) {
+        renderEmptyState(tableKey, elapsed);
         return;
       }
 
+      renderTable(data, clean, elapsed, tableKey);
+    }
+
+    function filterRows(rows, cond) {
+      // Check for column LIKE '%val%'
+      const likeMatch = cond.match(/([a-zA-Z0-9_]+)\s+like\s+['"]%?([^%'"\n]+)%?['"]/i);
+      if (likeMatch) {
+        const col = likeMatch[1].toLowerCase();
+        const val = likeMatch[2].toLowerCase();
+        return rows.filter(row => {
+          const actual = findRowVal(row, col);
+          return String(actual).toLowerCase().includes(val);
+        });
+      }
+
+      // Check for column = 'val'
+      const eqMatch = cond.match(/([a-zA-Z0-9_]+)\s*=\s*['"]?([^'"\n]+?)['"]?$/i);
+      if (eqMatch) {
+        const col = eqMatch[1].toLowerCase();
+        const val = eqMatch[2].toLowerCase();
+        return rows.filter(row => {
+          const actual = findRowVal(row, col);
+          return String(actual).toLowerCase() === val;
+        });
+      }
+
+      // Check for column != 'val'
+      const neMatch = cond.match(/([a-zA-Z0-9_]+)\s*(?:!=|<>)\s*['"]?([^'"\n]+?)['"]?$/i);
+      if (neMatch) {
+        const col = neMatch[1].toLowerCase();
+        const val = neMatch[2].toLowerCase();
+        return rows.filter(row => {
+          const actual = findRowVal(row, col);
+          return String(actual).toLowerCase() !== val;
+        });
+      }
+
+      // Fallback: Free text search across all columns in row
+      const cleanTerm = cond.replace(/['"%]/g, "").trim().toLowerCase();
+      if (!cleanTerm) return rows;
+      return rows.filter(row => {
+        return Object.values(row).some(v => String(v).toLowerCase().includes(cleanTerm));
+      });
+    }
+
+    function findRowVal(row, colName) {
+      const key = Object.keys(row).find(k => k.toLowerCase() === colName);
+      return key ? row[key] : "";
+    }
+
+    function renderTable(data, query, elapsed, tableName) {
       const columns = Object.keys(data[0]);
 
       let html = `
         <div class="sql-results-header d-flex justify-content-between align-items-center mb-2 px-1">
-          <small class="text-success"><span class="icon-check"></span> Query OK, ${data.length} rows returned</small>
+          <small class="text-success"><span class="icon-check"></span> Query OK, ${data.length} row${data.length === 1 ? '' : 's'} returned</small>
           <small class="text-muted">Execution time: <strong class="text-white">${elapsed} ms</strong></small>
         </div>
         <div class="table-responsive">
           <table class="table table-sm table-dark sql-result-table mb-0">
             <thead>
               <tr>
-                ${columns.map(c => `<th>${c.toUpperCase()}</th>`).join("")}
+                ${columns.map(c => `<th>${escapeHtml(c.toUpperCase())}</th>`).join("")}
               </tr>
             </thead>
             <tbody>
               ${data.map(row => `
                 <tr>
-                  ${columns.map(c => `<td>${escapeHtml(String(row[c]))}</td>`).join("")}
+                  ${columns.map(c => `<td>${escapeHtml(String(row[c] !== undefined ? row[c] : 'NULL'))}</td>`).join("")}
                 </tr>
               `).join("")}
             </tbody>
@@ -577,16 +767,107 @@
       outputArea.innerHTML = html;
     }
 
-    function escapeHtml(str) {
-      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    function renderEmptyState(tableKey, elapsed) {
+      outputArea.innerHTML = `
+        <div class="sql-results-header d-flex justify-content-between align-items-center mb-2 px-1">
+          <small class="text-warning"><span class="icon-info-circle mr-1"></span> Query OK, 0 rows returned</small>
+          <small class="text-muted">Execution time: <strong class="text-white">${elapsed} ms</strong></small>
+        </div>
+        <div class="p-3" style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: 8px;">
+          <p class="mb-2 text-muted" style="font-size: 0.88rem;">No records matched your WHERE condition. Click a quick query to explore:</p>
+          <div class="sql-hint-pills">
+            <span class="sql-hint-pill" data-query="SELECT * FROM ${escapeHtml(tableKey)};">SELECT * FROM ${escapeHtml(tableKey)};</span>
+            <span class="sql-hint-pill" data-query="SELECT * FROM education;">SELECT * FROM education;</span>
+            <span class="sql-hint-pill" data-query="SHOW TABLES;">SHOW TABLES;</span>
+          </div>
+        </div>
+      `;
+      bindHintPills();
+    }
+
+    function renderTableNotFound(missingTable, elapsed) {
+      outputArea.innerHTML = `
+        <div class="sql-results-header d-flex justify-content-between align-items-center mb-2 px-1">
+          <small class="text-danger"><span class="icon-exclamation-triangle mr-1"></span> [SQLCMD-404] Table Not Found</small>
+          <small class="text-muted">${elapsed} ms</small>
+        </div>
+        <div class="p-3" style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 8px;">
+          <p class="mb-2" style="color: #fca5a5; font-size: 0.9rem;">
+            Table <code>${escapeHtml(missingTable)}</code> does not exist in database <code>tanmay_analytics</code>.
+          </p>
+          <small class="text-muted d-block mb-2">Available tables in this database:</small>
+          <div class="sql-hint-pills">
+            <span class="sql-hint-pill" data-query="SELECT * FROM education;">education (3)</span>
+            <span class="sql-hint-pill" data-query="SELECT * FROM projects;">projects (5)</span>
+            <span class="sql-hint-pill" data-query="SELECT * FROM experience;">experience (2)</span>
+            <span class="sql-hint-pill" data-query="SELECT * FROM skills;">skills (7)</span>
+            <span class="sql-hint-pill" data-query="SELECT * FROM metrics;">metrics (6)</span>
+            <span class="sql-hint-pill" data-query="SHOW TABLES;">SHOW TABLES</span>
+          </div>
+        </div>
+      `;
+      bindHintPills();
+    }
+
+    function renderError(message, elapsed) {
+      outputArea.innerHTML = `
+        <div class="sql-results-header d-flex justify-content-between align-items-center mb-2 px-1">
+          <small class="text-danger"><span class="icon-times-circle mr-1"></span> SQL Error</small>
+          <small class="text-muted">${elapsed} ms</small>
+        </div>
+        <div class="p-3" style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 8px;">
+          <p class="mb-2" style="color: #fca5a5; font-size: 0.9rem;">${escapeHtml(message)}</p>
+          <small class="text-muted d-block mb-2">Try one of these valid queries:</small>
+          <div class="sql-hint-pills">
+            <span class="sql-hint-pill" data-query="SELECT * FROM education;">SELECT * FROM education;</span>
+            <span class="sql-hint-pill" data-query="SELECT * FROM projects;">SELECT * FROM projects;</span>
+            <span class="sql-hint-pill" data-query="SELECT * FROM experience;">SELECT * FROM experience;</span>
+            <span class="sql-hint-pill" data-query="SHOW TABLES;">SHOW TABLES;</span>
+            <span class="sql-hint-pill" data-query="HELP;">HELP;</span>
+          </div>
+        </div>
+      `;
+      bindHintPills();
+    }
+
+    function bindHintPills() {
+      outputArea.querySelectorAll(".sql-hint-pill").forEach(pill => {
+        pill.addEventListener("click", function() {
+          const q = this.getAttribute("data-query");
+          if (q) {
+            input.value = q;
+            queryPills.forEach(p => {
+              if (p.getAttribute("data-sql") === q) {
+                p.classList.add("active");
+              } else {
+                p.classList.remove("active");
+              }
+            });
+            executeQuery(q);
+          }
+        });
+      });
     }
 
     runBtn.addEventListener("click", () => executeQuery(input.value));
 
     input.addEventListener("keydown", function(e) {
-      if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+      if (e.key === "Enter") {
         e.preventDefault();
         executeQuery(input.value);
+      } else if (e.key === "ArrowUp") {
+        if (historyIdx > 0) {
+          historyIdx--;
+          input.value = queryHistory[historyIdx] || "";
+        }
+      } else if (e.key === "ArrowDown") {
+        if (historyIdx < queryHistory.length - 1) {
+          historyIdx++;
+          input.value = queryHistory[historyIdx] || "";
+        } else {
+          historyIdx = queryHistory.length;
+          input.value = "";
+        }
       }
     });
 

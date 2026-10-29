@@ -115,7 +115,7 @@
               <div class="d-flex align-items-center justify-content-center">
                 <span class="icon-line-chart mr-2" style="color: var(--cyan-accent); font-size: 1.15rem;"></span>
                 <span style="font-size: 0.92rem; color: #cbd5e1;">
-                  <strong style="color: #ffffff;">Enterprise Data Warehousing &amp; BI</strong> • 1M+ Records Modeled
+                  <strong style="color: #ffffff;">Enterprise Data Warehousing &amp; BI</strong> • 5M+ Records Modeled
                 </span>
               </div>
             </div>
@@ -174,7 +174,7 @@
               <div class="mt-3 pt-3" style="border-top: 1px solid rgba(255,255,255,0.08);">
                 <div class="d-flex justify-content-around text-center">
                   <div>
-                    <h4 style="color: var(--primary-accent); font-weight: 800; margin-bottom: 0;">1M+</h4>
+                    <h4 style="color: var(--primary-accent); font-weight: 800; margin-bottom: 0;">5M+</h4>
                     <small style="color: #94a3b8; font-size: 0.72rem; text-transform: uppercase;">Records Modeled</small>
                   </div>
                   <div style="border-left: 1px solid rgba(255,255,255,0.1); border-right: 1px solid rgba(255,255,255,0.1); padding: 0 10px;">
@@ -238,7 +238,7 @@
                 <i class="icon-database"></i> <span>Data Architecture &amp; Modeling</span>
               </div>
               <p class="about-pillar-desc">
-                Designed <strong>Medallion (Bronze/Silver/Gold)</strong> warehouses and <strong>Star Schemas</strong> processing <strong>1M+ transactions</strong> in SQL Server, structuring messy relational data into performant dimensional models with production SQL window functions (LAG, RANK, NTILE).
+                Designed <strong>Medallion (Bronze/Silver/Gold)</strong> warehouses and <strong>Star Schemas</strong> processing <strong>5M+ multi-source records</strong> in SQL Server &amp; PostgreSQL, structuring messy relational data into performant dimensional models with production SQL window functions (LAG, RANK, NTILE).
               </p>
             </div>
 
@@ -702,7 +702,7 @@
           <div class="col-md-9 heading-section text-center ftco-animate">
             <span class="subheading" style="color: var(--cyan-accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Live Interactive Sandbox</span>
             <h2 class="mb-3" style="font-size: 2.2rem; font-weight: 800; color: #ffffff;">Query Tanmay's Career Database</h2>
-            <p style="color: #94a3b8;">Don't just take my word for it. Run live SQL queries right now to inspect my experience, projects, and metrics.</p>
+            <p style="color: #94a3b8;">Don't just take my word for it. Run live SQL queries right now to inspect my education, experience, projects, and metrics.</p>
           </div>
         </div>
 
@@ -735,6 +735,9 @@
                     </button>
                     <button class="sql-preset-btn" data-sql="SELECT company, role, impact FROM experience;">
                       💼 Query Work Experience
+                    </button>
+                    <button class="sql-preset-btn" data-sql="SELECT institution, degree, score, honors, location FROM education;">
+                      🎓 Query Academic Education
                     </button>
                     <button class="sql-preset-btn" data-sql="SELECT skill, category, level FROM skills WHERE category = 'Data Analytics';">
                       🎯 Query Analytics Skills
@@ -948,8 +951,8 @@
           
           <div class="col-6 col-md-3 mb-4 ftco-animate">
             <div class="impact-counter-card">
-              <span class="impact-number">1M+</span>
-              <span class="impact-label">Transactions Modeled</span>
+              <span class="impact-number">5M+</span>
+              <span class="impact-label">Total Records Modeled</span>
             </div>
           </div>
 

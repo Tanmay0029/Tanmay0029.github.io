@@ -1603,6 +1603,34 @@ body.theme-gotham-crimson .btn-glow-outline:hover,
   vertical-align: middle;
 }
 
+.sql-hint-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.sql-hint-pill {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  color: var(--cyan-accent);
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.sql-hint-pill:hover {
+  background: rgba(0, 210, 255, 0.15);
+  border-color: var(--cyan-accent);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+
 /* ==========================================================================
    Creative Feature 3: Medallion Architecture Lineage Explorer
    ========================================================================== */
